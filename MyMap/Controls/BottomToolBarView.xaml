@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:customviews="clr-namespace:MyMap.CustomViews"
+             xmlns:b="http://prismlibrary.com"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:converters="clr-namespace:MyMap.ConvertData"
+             mc:Ignorable="d"
+             x:Class="MyMap.Controls.BottomToolBarView">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <converters:ItemTappedConverter x:Key="ItemTappedConverter"/>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Content>
+        <Grid x:Name="SToolbar" RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <!--<BoxView ios:VisualElement.BlurEffect="Light" Margin="0, -50, 0, 0 " Grid.Row="1" BackgroundColor="#1affffff" />-->
+            <StackLayout x:Name="DetailToolbar" BindableLayout.ItemsSource = "{Binding ToolbarItems}" IsVisible="false"
+                         HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.Row="1" Padding="0, 5, 0, 30">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Horizontal" Padding="10, 2, 10, 2">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding BindingContext.ItemSelectionChangedCommand,Source={x:Reference DetailToolbar}}" CommandParameter="{Binding .}"/>
+                            </StackLayout.GestureRecognizers>
+                            <customviews:ExtendedImage Source="{Binding ImageSource}" HeightRequest="27" WidthRequest="27" 
+                                                       TintColor="#388E3C" Margin="3"
+                                                       VerticalOptions="CenterAndExpand"/>
+                            <Label TextColor="White" Text="{Binding Title}" FontSize="Micro" VerticalOptions="CenterAndExpand"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </StackLayout>
+            
+        </Grid>
+    </ContentView.Content>
+</ContentView>

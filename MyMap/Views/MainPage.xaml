@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyMap.Views.MainPage"
+              xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             xmlns:controls="clr-namespace:MyMap.Controls"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
+             ios:Page.UseSafeArea="true"
+             Background="LightGoldenrodYellow"
+             Title="{Binding Title}">
+
+    <ContentPage.Content>
+        <Grid RowDefinitions="*, auto" RowSpacing="0">
+             <ContentView Grid.Row="0" Grid.RowSpan="2" Content="{Binding MapView}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"></ContentView>
+         <controls:BottomToolBarView
+             ItemsSource="{Binding ToolbarItems}"
+                                 ItemSelected="{Binding ItemSelectionChangedCommand}"
+                                 BarBackgroundColor="LightGoldenrodYellow"
+                                 BarDetailBackgroundColor="White"
+                                 Grid.Row="1"/>
+
+        </Grid>
+       
+    </ContentPage.Content>
+</ContentPage>
