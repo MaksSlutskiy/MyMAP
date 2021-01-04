@@ -23,9 +23,9 @@ namespace MyMap.iOS
         {
             Forms.SetFlags(new string[] { "RadioButton_Experimental", "IndicatorView_Experimental", "AppTheme_Experimental" });
 
-            global::Xamarin.Forms.Forms.Init();
-            //Rg.Plugins.Popup.Popup.Init();
+            Rg.Plugins.Popup.Popup.Init();
             Xamarin.FormsMaps.Init();
+            Forms.Init();
             LoadApplication(new App(new iOSInitializer()));
             UINavigationBar.Appearance.TintColor = UIColor.FromRGB(255, 255, 255);
             UINavigationBar.Appearance.Translucent = false;

@@ -196,6 +196,30 @@
     <BundleResource Include="Resources\outline_info.png" />
     <BundleResource Include="Resources\outline_info%402x.png" />
     <BundleResource Include="Resources\outline_info%403x.png" />
+    <BundleResource Include="Resources\outline_add.png" />
+    <BundleResource Include="Resources\outline_add%402x.png" />
+    <BundleResource Include="Resources\outline_add%403x.png" />
+    <BundleResource Include="Resources\outline_arrow.png" />
+    <BundleResource Include="Resources\outline_arrow%402x.png" />
+    <BundleResource Include="Resources\outline_arrow%403x.png" />
+    <BundleResource Include="Resources\outline_clear.png" />
+    <BundleResource Include="Resources\outline_clear%402x.png" />
+    <BundleResource Include="Resources\outline_clear%403x.png" />
+    <BundleResource Include="Resources\outline_edit.png" />
+    <BundleResource Include="Resources\outline_edit%402x.png" />
+    <BundleResource Include="Resources\outline_edit%403x.png" />
+    <BundleResource Include="Resources\outline_home.png" />
+    <BundleResource Include="Resources\outline_home%402x.png" />
+    <BundleResource Include="Resources\outline_home%403x.png" />
+    <BundleResource Include="Resources\outline_settings_points_white.png" />
+    <BundleResource Include="Resources\outline_settings_points_white%402x.png" />
+    <BundleResource Include="Resources\outline_settings_points_white%403x.png" />
+    <BundleResource Include="Resources\outline_settings.png" />
+    <BundleResource Include="Resources\outline_settings%402x.png" />
+    <BundleResource Include="Resources\outline_settings%403x.png" />
+    <BundleResource Include="Resources\outline_check.png" />
+    <BundleResource Include="Resources\outline_check%402x.png" />
+    <BundleResource Include="Resources\outline_check%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -205,10 +229,12 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="4.8.0.1821" />
-    <PackageReference Include="Xamarin.Essentials.Interfaces" Version="1.5.3.2" />
-    <PackageReference Include="Prism.DryIoc.Forms" Version="8.0.0.1909" />
+    <PackageReference Include="Xamarin.Essentials.Interfaces" Version="1.6.0" />
     <PackageReference Include="Xamarin.Forms.Maps">
       <Version>4.8.0.1821</Version>
+    </PackageReference>
+    <PackageReference Include="Prism.DryIoc.Forms">
+      <Version>7.2.0.1422</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

@@ -19,6 +19,26 @@ namespace MyMap.ViewModels
         private MapSpan _mapSpan;
         private Position _position;
         private List<CustomPin> _pins;
+        private bool _isCenterIconVisible;
+        private bool _isSideBarIconVisible;
+
+        private DelegateCommand _sideBarOpenCommand;
+
+        public DelegateCommand SideBarOpenCommand =>
+            _sideBarOpenCommand ?? (_sideBarOpenCommand = new DelegateCommand(async() =>
+            {
+                await NavigationService.NavigateAsync("SideBarPopupPage");
+            }));
+        public bool IsCenterIconVisible
+        {
+            get => _isCenterIconVisible;
+            set => SetProperty(ref _isCenterIconVisible, value);
+        }
+        public bool IsSideBarIconVisible
+        {
+            get => _isSideBarIconVisible;
+            set => SetProperty(ref _isSideBarIconVisible, value);
+        }
 
         public MainPageViewModel(INavigationService navigationService, IEventAggregator eventAggregator, IPageDialogService pageDialogService)
             : base(navigationService, eventAggregator, pageDialogService)
@@ -32,10 +52,7 @@ namespace MyMap.ViewModels
                // new ViewItem {Title=Translator.TranslatorInstance["New_Archive_Templates"], ImageSource="outline_pattern_payment.png" },
                // new ViewItem {Title=Translator.TranslatorInstance["New_Archive_ChangeColumn"], ImageSource="outline_view_col.png" }
             };
-
-
-
-
+            IsSideBarIconVisible = true;
 
 
             _position = new Position(50.449218, 30.525824);
@@ -86,13 +103,73 @@ namespace MyMap.ViewModels
         protected override void ToolbarItemClicked(object parameter)
         {
             var index = ToolbarItems.IndexOf(parameter as ViewItem);
-            //switch (index)
-            //{
-            //    case 0: IsSearchBarVisible = !_isSearchBarVisible; break;
-            //    case 1: NewConsigment(); break;
-            //        // case 2: PaymentPattern(); break;
-            //        // case 3: ChangeColomnsListView(); break;
-            //}
+
+            if(IsCenterIconVisible)
+            {
+                switch (index)
+                {
+                    case 0: SaveNewPin(); break;
+                    case 1: CloseAddingPin(); break;
+                        // case 2: PaymentPattern(); break;
+                        // case 3: ChangeColomnsListView(); break;
+                }
+            }
+            else
+            {
+                //switch (index)
+                //{
+                //    case 0: IsSearchBarVisible = !_isSearchBarVisible; break;
+                //    case 1: NewConsigment(); break;
+                //}
+            }
+
+        }
+
+        public override void OnNavigatedTo(INavigationParameters parameters)
+        {
+            base.OnNavigatedFrom(parameters);
+
+            if (parameters.ContainsKey("ActionMap"))
+            {
+                if (parameters["ActionMap"].ToString() == ActionMap.AddPin.ToString())
+                {
+                    IsCenterIconVisible = true;
+                    IsSideBarIconVisible = false;
+                    this.ToolbarItems = new List<ViewItem>
+                    {   
+                        new ViewItem {Title= "Save", ImageSource="outline_check.png" },
+                        new ViewItem {Title= "Back", ImageSource="outline_clear.png" },
+                    };
+                }
+
+            }
+        }
+
+        private void CloseAddingPin()
+        {
+
+            IsCenterIconVisible = false;
+            IsSideBarIconVisible = true;
+            this.ToolbarItems = new List<ViewItem>
+            {
+                new ViewItem {Title= "item0", ImageSource="outline_info.png" },
+                new ViewItem {Title= "item1", ImageSource="outline_info.png" },
+               // new ViewItem {Title=Translator.TranslatorInstance["New_Archive_Templates"], ImageSource="outline_pattern_payment.png" },
+               // new ViewItem {Title=Translator.TranslatorInstance["New_Archive_ChangeColumn"], ImageSource="outline_view_col.png" }
+            };
+        }
+        private void SaveNewPin()
+        {
+
+            IsCenterIconVisible = false;
+            IsSideBarIconVisible = true;
+            this.ToolbarItems = new List<ViewItem>
+            {
+                new ViewItem {Title= "item0", ImageSource="outline_info.png" },
+                new ViewItem {Title= "item1", ImageSource="outline_info.png" },
+               // new ViewItem {Title=Translator.TranslatorInstance["New_Archive_Templates"], ImageSource="outline_pattern_payment.png" },
+               // new ViewItem {Title=Translator.TranslatorInstance["New_Archive_ChangeColumn"], ImageSource="outline_view_col.png" }
+            };
         }
     }
 }

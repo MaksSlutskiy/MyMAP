@@ -10,7 +10,6 @@ using Xamarin.Forms.Xaml;
 
 namespace MyMap.Controls
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class BottomToolBarView : ContentView, IDisposable
     {
         public delegate void TapDelegate();
@@ -110,7 +109,7 @@ namespace MyMap.Controls
 
         private void SetValue(List<ViewItem> items)
         {
-            items.Insert(0, new ViewItem { ImageSource = "outline_info.png", Title = string.Empty });
+            items.Insert(0, new ViewItem { ImageSource = "outline_arrow.png", Title = string.Empty });
             DetailToolbar.BackgroundColor = BarDetailBackgroundColor;
 
             var index = 0;

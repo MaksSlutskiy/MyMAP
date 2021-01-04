@@ -7,19 +7,31 @@
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
              ios:Page.UseSafeArea="true"
              Background="LightGoldenrodYellow"
+             xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:customviews="clr-namespace:MyMap.CustomViews"
              Title="{Binding Title}">
 
     <ContentPage.Content>
         <Grid RowDefinitions="*, auto" RowSpacing="0">
-             <ContentView Grid.Row="0" Grid.RowSpan="2" Content="{Binding MapView}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"></ContentView>
-         <controls:BottomToolBarView
+            <ContentView Grid.Row="0" Grid.RowSpan="2" Content="{Binding MapView}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"></ContentView>
+
+            <pancakeView:PancakeView IsVisible="{Binding IsSideBarIconVisible}" HeightRequest="100" Margin="0,70,0,0"  Grid.Row="0" HorizontalOptions="EndAndExpand"   CornerRadius="20,0,20,0" BackgroundColor="White" VerticalOptions="CenterAndExpand">
+               
+             <customviews:ExtendedImageButton    Source="outline_info.png" HeightRequest="27"  WidthRequest="27" Command="{Binding SideBarOpenCommand}"
+                                                       TintColor="#388E3C"  
+                                                       VerticalOptions="CenterAndExpand"/>
+             </pancakeView:PancakeView>
+            <customviews:ExtendedImage IsVisible="{Binding IsCenterIconVisible}" Source="outline_info.png" HeightRequest="27" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Grid.Row="0" WidthRequest="27">
+
+            </customviews:ExtendedImage>
+            <controls:BottomToolBarView
              ItemsSource="{Binding ToolbarItems}"
                                  ItemSelected="{Binding ItemSelectionChangedCommand}"
-                                 BarBackgroundColor="LightGoldenrodYellow"
-                                 BarDetailBackgroundColor="White"
+                                 BarBackgroundColor="Blue"
+                                 BarDetailBackgroundColor="Black"
                                  Grid.Row="1"/>
 
         </Grid>
-       
+
     </ContentPage.Content>
 </ContentPage>
