@@ -1,4 +1,4 @@
-﻿
+﻿using MyMap.ViewModels;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
@@ -13,6 +13,7 @@ namespace MyMap.Views
         public MainPage()
         {
             InitializeComponent();
+
         }
 
         protected override void OnAppearing()

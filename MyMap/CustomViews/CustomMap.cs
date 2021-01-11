@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using MyMap.Model;
 using Xamarin.Forms.Maps;
 
 namespace MyMap.CustomViews

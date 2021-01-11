@@ -8,7 +8,7 @@ namespace SqliteApp.Standart.Context
 {
     public partial class MobileContext : DbContext
     {
-        public DbSet<MapObject> Payment { get; set; }
+        public DbSet<MapObject> MapObjects { get; set; }
 
         //public DbSet<PurchaseHistory> History { get; set; }
         public MobileContext()

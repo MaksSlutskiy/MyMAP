@@ -5,6 +5,7 @@ using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
 using MyMap.CustomViews;
 using MyMap.Droid.CustomViews;
+using MyMap.Model;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 using Xamarin.Forms.Maps.Android;
@@ -61,13 +62,13 @@ namespace MyMap.Droid.CustomViews
                 throw new Exception("Custom pin not found");
             }
 
-            if (!string.IsNullOrWhiteSpace(customPin.Url))
-            {
-                var url = Android.Net.Uri.Parse(customPin.Url);
-                var intent = new Intent(Intent.ActionView, url);
-                intent.AddFlags(ActivityFlags.NewTask);
-                Android.App.Application.Context.StartActivity(intent);
-            }
+            //if (!string.IsNullOrWhiteSpace(customPin.Url))
+            //{
+            //    var url = Android.Net.Uri.Parse(customPin.Url);
+            //    var intent = new Intent(Intent.ActionView, url);
+            //    intent.AddFlags(ActivityFlags.NewTask);
+            //    Android.App.Application.Context.StartActivity(intent);
+            //}
         }
         CustomPin GetCustomPin(Marker marker)
         {

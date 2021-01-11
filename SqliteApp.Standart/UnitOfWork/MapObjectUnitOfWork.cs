@@ -8,12 +8,12 @@ namespace SqliteApp.Standart.UnitOfWork
 {
     public class MapObjectUnitOfWork : BaseUnitOfWork
     {
-        public IRepository<MapObject> PaymentRepository { get; }
+        public IRepository<MapObject> MapObjectRepository { get; }
         
         public MapObjectUnitOfWork(DbContext db,
-                                 IRepository<MapObject> paymentRepository) : base(db)
+                                 IRepository<MapObject> mapObjectRepository) : base(db)
         {
-            this.PaymentRepository = paymentRepository;
+            this.MapObjectRepository = mapObjectRepository;
         }
 
 

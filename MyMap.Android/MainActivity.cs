@@ -20,6 +20,7 @@ namespace MyMap.Droid
 
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             Rg.Plugins.Popup.Popup.Init(this);
+            SQLitePCL.Batteries.Init();
             Xamarin.FormsMaps.Init(this, savedInstanceState);
             LoadApplication(new App(new AndroidInitializer()));
             Toolbar toolbar

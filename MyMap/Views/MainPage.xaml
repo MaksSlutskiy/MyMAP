@@ -13,7 +13,10 @@
 
     <ContentPage.Content>
         <Grid RowDefinitions="*, auto" RowSpacing="0">
-            <ContentView Grid.Row="0" Grid.RowSpan="2" Content="{Binding MapView}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"></ContentView>
+            <ContentView Grid.Row="0" Grid.RowSpan="2" Content="{Binding MapView}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+
+
+
 
             <pancakeView:PancakeView IsVisible="{Binding IsSideBarIconVisible}" HeightRequest="100" Margin="0,70,0,0"  Grid.Row="0" HorizontalOptions="EndAndExpand"   CornerRadius="20,0,20,0" BackgroundColor="White" VerticalOptions="CenterAndExpand">
                
@@ -21,9 +24,9 @@
                                                        TintColor="#388E3C"  
                                                        VerticalOptions="CenterAndExpand"/>
              </pancakeView:PancakeView>
-            <customviews:ExtendedImage IsVisible="{Binding IsCenterIconVisible}" Source="outline_info.png" HeightRequest="27" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Grid.Row="0" WidthRequest="27">
+            <customviews:ExtendedImage HorizontalOptions="CenterAndExpand" TranslationY="{Binding AnchorY}" IsVisible="{Binding IsCenterIconVisible}" Source="outline_pin.png" HeightRequest="60"   Grid.Row="0" WidthRequest="60"/>
 
-            </customviews:ExtendedImage>
+
             <controls:BottomToolBarView
              ItemsSource="{Binding ToolbarItems}"
                                  ItemSelected="{Binding ItemSelectionChangedCommand}"

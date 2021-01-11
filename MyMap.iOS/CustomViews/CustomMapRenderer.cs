@@ -4,6 +4,7 @@ using CoreGraphics;
 using MapKit;
 using MyMap.CustomViews;
 using MyMap.iOS.CustomViews;
+using MyMap.Model;
 using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
@@ -65,6 +66,9 @@ namespace MyMap.iOS.CustomViews
                 //annotationView.Image = UIImage.FromFile("pin.png");
                 annotationView.Image = UIImage.FromFile(customPin.Icon);
                 annotationView.CalloutOffset = new CGPoint(0, 0);
+                int width = 40;
+                int height = 40;
+                annotationView.Frame = new CGRect(0,0,width, height);
             }
             annotationView.CanShowCallout = true;
             return annotationView;

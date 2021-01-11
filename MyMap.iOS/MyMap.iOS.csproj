@@ -23,11 +23,14 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
-    <MtouchArch>i386, x86_64</MtouchArch>
+    <MtouchArch>x86_64</MtouchArch>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
-    <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
-    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+    <MtouchI18n>west</MtouchI18n>
+    <DeviceSpecificBuild>false</DeviceSpecificBuild>
+    <MtouchFloat32>true</MtouchFloat32>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <MtouchExtraArgs>--nolinkaway --linkskip=mscorlib</MtouchExtraArgs>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -70,6 +73,7 @@
     <CodesignKey>iPhone Developer</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
+    <MtouchLink>SdkOnly</MtouchLink>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
     <DebugType>none</DebugType>
@@ -84,6 +88,7 @@
     <CodesignKey>iPhone Distribution</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
+    <MtouchLink>SdkOnly</MtouchLink>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|iPhone' ">
     <DebugType>none</DebugType>
@@ -97,6 +102,7 @@
     <CodesignKey>iPhone Distribution</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
+    <MtouchLink>SdkOnly</MtouchLink>
   </PropertyGroup>
     <ItemGroup>
     <Compile Include="Main.cs" />
@@ -108,6 +114,7 @@
     <Compile Include="CustomViews\CustomMapRenderer.cs" />
     <Compile Include="CustomViews\ExtendedImageRender.cs" />
     <Compile Include="CustomViews\ExtendedImageButtonRenderer.cs" />
+    <Compile Include="Service\DatabaseService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\Contents.json">
@@ -220,6 +227,9 @@
     <BundleResource Include="Resources\outline_check.png" />
     <BundleResource Include="Resources\outline_check%402x.png" />
     <BundleResource Include="Resources\outline_check%403x.png" />
+    <BundleResource Include="Resources\outline_pin.png" />
+    <BundleResource Include="Resources\outline_pin%402x.png" />
+    <BundleResource Include="Resources\outline_pin%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -228,10 +238,10 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1821" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.1874" />
     <PackageReference Include="Xamarin.Essentials.Interfaces" Version="1.6.0" />
     <PackageReference Include="Xamarin.Forms.Maps">
-      <Version>4.8.0.1821</Version>
+      <Version>5.0.0.1874</Version>
     </PackageReference>
     <PackageReference Include="Prism.DryIoc.Forms">
       <Version>7.2.0.1422</Version>
@@ -249,6 +259,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CustomViews\" />
+    <Folder Include="Service\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

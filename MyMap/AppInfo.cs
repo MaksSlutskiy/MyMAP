@@ -5,6 +5,8 @@ namespace MyMap
 {
     public class AppModelInfo
     {
+        public static string DatabaseName = "MyMap.db";
+
         public string ProductName
         {
             get => AppInfo.Name;

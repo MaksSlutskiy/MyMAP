@@ -33,6 +33,7 @@ namespace MyMap.ViewModels
         protected ViewModelBase()
         {
         }
+
         protected ViewModelBase(INavigationService navigationService) : this()
         {
             NavigationService = navigationService;

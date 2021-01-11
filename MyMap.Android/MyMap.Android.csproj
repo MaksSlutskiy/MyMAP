@@ -61,10 +61,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1821" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.1874" />
     <PackageReference Include="Xamarin.Essentials.Interfaces" Version="1.6.0" />
     <PackageReference Include="Xamarin.Forms.Maps">
-      <Version>4.8.0.1821</Version>
+      <Version>5.0.0.1874</Version>
     </PackageReference>
     <PackageReference Include="Prism.DryIoc.Forms">
       <Version>7.2.0.1422</Version>
@@ -79,6 +79,7 @@
     <Compile Include="CustomViews\CustomMapRenderer.cs" />
     <Compile Include="CustomViews\ExtendedImageRender.cs" />
     <Compile Include="CustomViews\ExtendedImageButtonRenderer.cs" />
+    <Compile Include="Service\DatabaseService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -253,6 +254,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CustomViews\" />
+    <Folder Include="Service\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

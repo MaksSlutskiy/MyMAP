@@ -28,11 +28,13 @@ namespace SqliteApp.Standart.Abstructions
 
         public TEntity Get(int id)
         {
+            var res = db.Set<TEntity>().Find(id);
             return db.Set<TEntity>().Find(id);
         }
 
         public IEnumerable<TEntity> GetAll()
         {
+            var res = db.Set<TEntity>();
             return db.Set<TEntity>();
         }
 
