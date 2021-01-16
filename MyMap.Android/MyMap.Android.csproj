@@ -80,6 +80,8 @@
     <Compile Include="CustomViews\ExtendedImageRender.cs" />
     <Compile Include="CustomViews\ExtendedImageButtonRenderer.cs" />
     <Compile Include="Service\DatabaseService.cs" />
+    <Compile Include="CustomViews\ExtendedPickerRenderer.cs" />
+    <Compile Include="Helpers\BorderHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -255,6 +257,7 @@
   <ItemGroup>
     <Folder Include="CustomViews\" />
     <Folder Include="Service\" />
+    <Folder Include="Helpers\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

@@ -8,7 +8,9 @@ using MyMap.Model;
 using MyMap.Moduls;
 using MyMap.Service;
 using MyMap.ViewModels;
+using MyMap.ViewModels.DialogViewModel;
 using MyMap.Views;
+using MyMap.Views.DialogViews;
 using Prism;
 using Prism.Ioc;
 using Prism.Plugin.Popups;
@@ -70,6 +72,9 @@ namespace MyMap
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
             containerRegistry.RegisterForNavigation<SideBarPopupPage, SideBarViewModel>();
+
+            containerRegistry.RegisterForNavigation<EditPinDialogPage, EditPinDialogViewModel>();
+
             containerRegistry.RegisterPopupNavigationService();
 
            

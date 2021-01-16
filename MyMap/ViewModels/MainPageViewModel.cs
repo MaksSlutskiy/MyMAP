@@ -12,6 +12,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
+using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 
 namespace MyMap.ViewModels
@@ -32,7 +34,7 @@ namespace MyMap.ViewModels
         private DelegateCommand _sideBarOpenCommand;
 
         public DelegateCommand SideBarOpenCommand =>
-            _sideBarOpenCommand ?? (_sideBarOpenCommand = new DelegateCommand(async() =>
+            _sideBarOpenCommand ?? (_sideBarOpenCommand = new DelegateCommand(async () =>
             {
                 await NavigationService.NavigateAsync("SideBarPopupPage");
             }));
@@ -64,10 +66,21 @@ namespace MyMap.ViewModels
         public MainPageViewModel(INavigationService navigationService, IEventAggregator eventAggregator, IPageDialogService pageDialogService)
             : base(navigationService, eventAggregator, pageDialogService)
         {
-            Title = "Main Page";
-            //mapObjectService = App.DBModulManager.MapObjectService;
-            //GetDate();
+            Device.StartTimer(TimeSpan.FromSeconds(1), (Func<bool>)(() =>
+            {
+                try
+                {
+                    mapObjectService = App.DBModulManager.MapObjectService;
+                    GetDate();
+                    return false;
+                }
+                catch
+                {
+                    return true;
+                }
 
+            }));
+            Title = "Main Page";
             this.ToolbarItems = new List<ViewItem>
             {
                 new ViewItem {Title= "item0", ImageSource="outline_info.png" },
@@ -78,6 +91,19 @@ namespace MyMap.ViewModels
             IsSideBarIconVisible = true;
             ConfigMap();
         }
+
+        public override  void Initialize(INavigationParameters parameters)
+        {
+            base.Initialize(parameters);
+            
+
+        }
+
+        public override void OnNavigatedFrom(INavigationParameters parameters)
+        {
+            base.OnNavigatedFrom(parameters);
+        }
+
 
         public CustomMap MapView
         {
@@ -92,11 +118,14 @@ namespace MyMap.ViewModels
         {
             var index = ToolbarItems.IndexOf(parameter as ViewItem);
 
-            if(IsCenterIconVisible)
+            if (IsCenterIconVisible)
             {
                 switch (index)
                 {
-                    case 0: SaveNewPin(); break;
+                    case 0: SaveNewPin();
+                        NavigationService.NavigateAsync("EditPinDialogPage");
+
+                        break;
                     case 1: CloseAddingPin(); break;
                         // case 2: PaymentPattern(); break;
                         // case 3: ChangeColomnsListView(); break;
@@ -106,8 +135,8 @@ namespace MyMap.ViewModels
             {
                 switch (index)
                 {
-                    case 0: GetDate(); break;
-                    //case 1: NewConsigment(); break;
+                    //case 0: GetDate(); break;
+                        //case 1: NewConsigment(); break;
                 }
             }
 
@@ -116,16 +145,15 @@ namespace MyMap.ViewModels
         public override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedFrom(parameters);
-
             if (parameters.ContainsKey("ActionMap"))
             {
                 if (parameters["ActionMap"].ToString() == ActionMap.AddPin.ToString())
                 {
-                    
+
                     IsCenterIconVisible = true;
                     IsSideBarIconVisible = false;
                     this.ToolbarItems = new List<ViewItem>
-                    {   
+                    {
                         new ViewItem {Title= "Save", ImageSource="outline_check.png" },
                         new ViewItem {Title= "Back", ImageSource="outline_clear.png" },
                     };
@@ -149,23 +177,20 @@ namespace MyMap.ViewModels
         }
         private void SaveNewPin()
         {
-            mapObjectService = App.DBModulManager.MapObjectService;
-            GetDate();
+
             //Position = MapView.VisibleRegion.Center
             var pin = new MapObjectPin
             {
                 Name = "Xamarin",
                 Icon = "outline_pin.png",
                 Description = "test",
-                Label = "Santa Cruz",
                 IsVisible = true,
                 latitude = MapView.VisibleRegion.Center.Latitude,
                 longitude = MapView.VisibleRegion.Center.Longitude
             };
             var pin2 = new CustomPin
             {
-                Label = "Santa Cruz",
-                Name = "Xamarin",
+                Label = "Xamarin",
                 Icon = "outline_pin.png",
                 Description = "test",
                 Position = MapView.VisibleRegion.Center
@@ -173,9 +198,15 @@ namespace MyMap.ViewModels
 
             MapView.Pins.Add(pin2);
             MapView.CustomPins.Add(pin2);
+            var res = mapObjectService.Create(pin);
+            while(!res.IsCompleted)
+            {
+                if(res.IsCompleted)
+                {
+                    mapObjectService.Save();
+                }
+            }
 
-            mapObjectService.Create(pin);
-            mapObjectService.Save();
 
 
 
@@ -212,21 +243,24 @@ namespace MyMap.ViewModels
             //         Icon = "outline_pin.png",
             //         Position = new Position(50.449450, 30.525450)
             //     }
-            _mapObjectPin = (await mapObjectService.GetAll()).ToList();
 
-            _pins = new List<CustomPin>();
+                _mapObjectPin = (await mapObjectService.GetAll()).ToList();
 
-            foreach(var res in _mapObjectPin)
-            {
-                _pins.Add(new CustomPin { Icon = res.Icon, Description = res.Description, Name = res.Name, Position = new Position(res.latitude, res.longitude),Label = res.Label });
-            }
+                _pins = new List<CustomPin>();
 
-            foreach (var item in _pins)
-            {
-                _mapView.Pins.Add(item);
-                _mapView.CustomPins.Add(item);
-            }
+                foreach (var res in _mapObjectPin)
+                {
+                    _pins.Add(new CustomPin { Icon = res.Icon, Description = res.Description, Position = new Position(res.latitude, res.longitude), Label = res.Name });
+                }
+
+                foreach (var item in _pins)
+                {
+                    _mapView.Pins.Add(item);
+                    _mapView.CustomPins.Add(item);
+                }
+
         }
+        
         private void ConfigMap()
         {
             _position = new Position(50.449218, 30.525824);
@@ -236,5 +270,6 @@ namespace MyMap.ViewModels
             _mapView.MapType = MapType.Street;
             AnchorY = 53;
         }
+
     }
 }

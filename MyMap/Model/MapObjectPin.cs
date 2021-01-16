@@ -9,7 +9,6 @@ namespace MyMap.Model
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Label { get; set; }
         public string Icon { get; set; }
         public string Description { get; set; }
         //public ObservableCollection<Image> Images { get; set; }

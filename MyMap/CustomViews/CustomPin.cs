@@ -5,7 +5,6 @@ namespace MyMap.CustomViews
 {
     public class CustomPin : Pin
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public string Icon { get; set; }
         public string Description { get; set; }

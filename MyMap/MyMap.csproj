@@ -27,6 +27,8 @@
     <Folder Include="IRepository\" />
     <Folder Include="Model\" />
     <Folder Include="Extensions\" />
+    <Folder Include="Views\DialogViews\" />
+    <Folder Include="ViewModels\DialogViewModel\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SqliteApp.Standart\SqliteApp.Standart.csproj" />

@@ -59,10 +59,10 @@ namespace MyMap.iOS.CustomViews
             {
                 throw new Exception("Custom pin not found");
             }
-            annotationView = mapView.DequeueReusableAnnotation(customPin.Name);
+            annotationView = mapView.DequeueReusableAnnotation(customPin.Label);
             if (annotationView == null)
             {
-                annotationView = new MKAnnotationView(annotation, customPin.Name);
+                annotationView = new MKAnnotationView(annotation, customPin.Label);
                 //annotationView.Image = UIImage.FromFile("pin.png");
                 annotationView.Image = UIImage.FromFile(customPin.Icon);
                 annotationView.CalloutOffset = new CGPoint(0, 0);

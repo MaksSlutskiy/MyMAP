@@ -18,10 +18,6 @@ namespace SqliteApp.Standart.Entites
         public string Name { get; set; }
 
         [Required]
-        [System.ComponentModel.DataAnnotations.MaxLength(128)]
-        public string Label { get; set; }
-
-        [Required]
         [System.ComponentModel.DataAnnotations.MaxLength(1000)]
 
         public string Description { get; set; }
