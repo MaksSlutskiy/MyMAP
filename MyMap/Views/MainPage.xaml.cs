@@ -1,4 +1,5 @@
-﻿using MyMap.ViewModels;
+﻿using System.IO;
+using MyMap.ViewModels;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
@@ -13,27 +14,34 @@ namespace MyMap.Views
         public MainPage()
         {
             InitializeComponent();
-
         }
-
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            
+            SetSafaZoneMargin();
         }
         protected override void OnSizeAllocated(double width, double height)
         {
             base.OnSizeAllocated(width, height);
-
-            if (App.Info.Device == DevicePlatform.iOS)
+            SetSafaZoneMargin();
+        }
+        private void SetSafaZoneMargin()
+        {
+            var res = On<iOS>().UsingSafeArea();
+            if (App.Info.Device == DevicePlatform.iOS && App.Info.IsSafeAreaSupport)
             {
+                this.BoxView.IsVisible = true;
                 var safeInsets = On<iOS>().SafeAreaInsets();
-                safeInsets.Bottom = 20;
-                safeInsets.Top = 0;
-                safeInsets.Left = 0;
-                safeInsets.Right = 0;
-                this.Padding = safeInsets;
+                double size = 0;
+                if (safeInsets.Right > 0)
+                    size = safeInsets.Right;
+                else
+                    size = safeInsets.Left;
+                //this.MainGrid.Margin = new Thickness(0, safeInsets.Top, 0, 0);
+                this.BottomBar.Margin = new Thickness(0, 0, 0, 21);
             }
         }
+
+
     }
 }

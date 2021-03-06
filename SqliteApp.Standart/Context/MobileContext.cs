@@ -10,6 +10,8 @@ namespace SqliteApp.Standart.Context
     {
         public DbSet<MapObject> MapObjects { get; set; }
 
+        public DbSet<CategoryDb> CategoryDb { get; set; }
+
         //public DbSet<PurchaseHistory> History { get; set; }
         public MobileContext()
         {
@@ -19,6 +21,7 @@ namespace SqliteApp.Standart.Context
         {
             var dbPath = DependencyService.Get<IDatabaseService>().GetDatabasePath();
             optionsBuilder.EnableSensitiveDataLogging().UseSqlite($"Filename={dbPath}");
+
         }
 
 

@@ -4,8 +4,36 @@
                         xmlns:prism="clr-namespace:Prism.DryIoc;assembly=Prism.DryIoc.Forms"
              x:Class="MyMap.App">
   <Application.Resources>
+       <ResourceDictionary>
+            <Color x:Key="LightBackground">#F5F5F5</Color>
+            <Color x:Key="DarkBackground">#1E255E</Color>
 
-    <!-- Application resource dictionary -->
+            <Color x:Key="Button">#8E97FD</Color>
+
+             <Color x:Key="PancakeLightColor">#F2F3F7</Color>
+            <Color x:Key="PancakeDarkColor">#2B3166</Color>
+
+            <Color x:Key="White">#ffffff</Color>
+            <Color x:Key="Black">#000000</Color>
+            <Color x:Key="ToolBarDarkColor">#03174D</Color>
+
+            <Color x:Key="ToolBarBackDarkColor">#E6E7F2</Color>
+            <Color x:Key="ToolBarBackLightColor">#EBEAEC</Color>
+             <Color x:Key="ImageLightColor">#A0A3B1</Color>
+
+            <Color x:Key="TextLightColor">#A0A3B1</Color>
+             <Color x:Key="TextDarkColor">#98A1BD</Color>
+
+            <Color x:Key="TextLightMainColor">#3F414E</Color>
+
+             <Color x:Key="ToolBarBackTintColor">#3F414E</Color>
+            <Color x:Key="BoxColor">#E4E6FD</Color>
+            <Color x:Key="BackgroundListColor">#E5E5E5</Color>
+            <Color x:Key="BackgroundListItemColor">#586894</Color>
+
+            <Color x:Key="ButtonTextDarkColor">#3F414E</Color>
+            <Color x:Key="ButtonTextLightColor">#F6F1FB</Color>
+           </ResourceDictionary>
 
   </Application.Resources>
 </prism:PrismApplication>

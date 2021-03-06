@@ -45,5 +45,61 @@ namespace MyMap
                 }
             }
         }
+        public bool IsSafeAreaSupport
+        {
+            get
+            {
+                var display = DeviceDisplay.MainDisplayInfo;
+                var displayHeight = display.Height;
+                switch (displayHeight)
+                {
+                    //Width
+                    case 1668:/*2388*/
+                        return true;
+                    case 1640:/*2360*/
+                        return true;
+                    case 2048:/*2732*/
+                        return true;
+                    case 1284:/*2778*/
+                        return true;
+                    case 1125:/*2436*/
+                        return true;
+                    case 1170:/*2532*/
+                        return true;
+                    case 1242:/*2688*/
+                        return true;
+                    case 828:/*1792*/
+                        return true;
+
+                    //Height
+                    case 2388:
+                        return true;
+                    case 2360:
+                        return true;
+                    case 2732:
+                        return true;
+                    case 2778:
+                        return true;
+                    case 2436:
+                        return true;
+                    case 2532:
+                        return true;
+                    case 2688:
+                        return true;
+                    case 1792:
+                        return true;
+                    default:
+                        return false;
+                }
+            }
+        }
+        public string LanguageKey { get => "languageKey"; }
+        public string ThemeKey { get => "themeKey"; }
+
+        public string LatitudeKey { get => "latitudeKey"; }
+        public string LongitudeKey { get => "longitudeKey"; }
+
+        public string DegreesLatKey { get => "degreesLatKey"; }
+        public string DegreesLonKey { get => "degreesLonKey"; }
     }
 }

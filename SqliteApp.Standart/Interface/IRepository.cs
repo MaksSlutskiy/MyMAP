@@ -8,7 +8,7 @@ namespace SqliteApp.Standart.Interface
         IEnumerable<TEntity> GetAll();
         TEntity Get(int id);
         TEntity Create(TEntity entity);
-        void Update(TEntity entity);
+        void Update(TEntity entity,int id);
 
         void UpdateRange(IEnumerable<TEntity> entity);
 

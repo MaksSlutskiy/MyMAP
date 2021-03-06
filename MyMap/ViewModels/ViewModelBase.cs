@@ -1,4 +1,5 @@
-﻿using Prism.Commands;
+﻿using MyMap.Controls;
+using Prism.Commands;
 using Prism.Events;
 using Prism.Mvvm;
 using Prism.Navigation;
@@ -6,6 +7,7 @@ using Prism.Services;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -87,9 +89,9 @@ namespace MyMap.ViewModels
     public abstract class ViewModelToolbarBase : ViewModelBase
     {
         private DelegateCommand<object> _itemSelectionChangedCommand;
-        private IList _toolbarItems;
+        private ObservableCollection<ViewItem> _toolbarItems;
 
-        public IList ToolbarItems
+        public ObservableCollection<ViewItem> ToolbarItems
         {
             get => _toolbarItems;
             set => SetProperty(ref _toolbarItems, value);

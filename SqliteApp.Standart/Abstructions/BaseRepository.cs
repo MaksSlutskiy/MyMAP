@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using SqliteApp.Standart.Interface;
+using System.Reflection;
+using System.Linq;
 
 namespace SqliteApp.Standart.Abstructions
 {
@@ -17,12 +19,17 @@ namespace SqliteApp.Standart.Abstructions
 
         public TEntity Create(TEntity entity)
         {
-            return db.Add(entity).Entity;
+            var res = db.Add(entity).Entity;
+            Save();
+            var local = db.Set<TEntity>().ToList().Last();
+            Save();
+            return local;
         }
 
         public void Delete(TEntity entity)
         {
             db.Set<TEntity>().Remove(entity);
+            Save();
         }
 
 
@@ -40,20 +47,35 @@ namespace SqliteApp.Standart.Abstructions
 
         public void Save()
         {
-            db.SaveChanges();
+            db.SaveChangesAsync();
         }
 
 
-        public void Update(TEntity entity)
+        public void Update(TEntity entity,int id)
         {
+            var local = Get(id);
+            if (local != null)
+            {
+                db.Entry(local).State = EntityState.Detached;
+            }
             db.Entry(entity).State = EntityState.Modified;
+            Save();
         }
 
         public void UpdateRange(IEnumerable<TEntity> entity)
         {
+            if(entity != null)
+            {
+                //foreach (var item in entity)
+                //{
+                //    db.Entry(item).State = EntityState.Detached;
+                //}
+                db.Set<TEntity>().AsNoTracking();
+                db.Set<TEntity>().UpdateRange(entity);
+                Save();
 
-            db.Set<TEntity>().UpdateRange(entity);
-
+            }
+           
         }
     }
 }

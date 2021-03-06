@@ -4,6 +4,7 @@ using Android.OS;
 using AndroidX.AppCompat.Widget;
 using Prism;
 using Prism.Ioc;
+using Xamarin.Forms;
 
 namespace MyMap.Droid
 {
@@ -17,8 +18,9 @@ namespace MyMap.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
-
+            Forms.SetFlags("IndicatorView_Experimental", "RadioButton_Experimental", "AppTheme_Experimental");
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            Plugin.CurrentActivity.CrossCurrentActivity.Current.Init(this, savedInstanceState);
             Rg.Plugins.Popup.Popup.Init(this);
             SQLitePCL.Batteries.Init();
             Xamarin.FormsMaps.Init(this, savedInstanceState);

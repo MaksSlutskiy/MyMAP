@@ -9,9 +9,11 @@ namespace MyMap.Moduls
     public class DbManagerModule : BindableBase
     {
         public IService<MapObjectPin> MapObjectService { get; set; }
-        public DbManagerModule(IService<MapObjectPin> mapObjectService)
+        public IService<Category> CategoryService { get; set; }
+        public DbManagerModule(IService<MapObjectPin> mapObjectService, IService<Category> categoryService)
         {
             MapObjectService = mapObjectService;
+            CategoryService = categoryService;
         }
        
     }

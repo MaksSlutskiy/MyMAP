@@ -31,6 +31,9 @@ namespace SqliteApp.Standart.Entites
         public double longitude { get; set; }
         [Required]
         public bool IsVisible { get; set; }
+        [Required]
+        public int Category { get; set; }
+
         //[Required]
         //public IEnumerable<Image> Images { get; set; }
         //[Required]
@@ -39,12 +42,5 @@ namespace SqliteApp.Standart.Entites
         //public bool IsVisible { get; set; }
     }
 
-    public enum Category
-    {
-        BeautifulViews,
-        Restaurants,
-        Bars,
-        Cinemas,
-        FitnessClubs
-    };
+   
 }

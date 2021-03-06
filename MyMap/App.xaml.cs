@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Threading.Tasks;
 using DryIoc;
 using Microsoft.EntityFrameworkCore;
@@ -33,7 +34,7 @@ namespace MyMap
         public static DbManagerModule DBModulManager { get; private set; }
 
         public static AppModelInfo Info { get; private set; }
-
+        private DataContainer dataContainer;
         public App() : this(null)
         {
         }
@@ -51,9 +52,11 @@ namespace MyMap
                container.Options.DefaultScopedLifestyle = new AsyncScopedLifestyle();
                 container.Options.EnableAutoVerification = false;
                 container.Register<IRepository<MapObject>, MapObjectRepository>();
+                container.Register<IRepository<CategoryDb>, CategoryRepository>();
                 container.Register<IService<MapObjectPin>, MapObjectService>();
+                container.Register<IService<Category>, CategoryService>();
                 container.Register<DbContext, MobileContext>();
-                DBModulManager = new DbManagerModule(container.GetInstance<IService<MapObjectPin>>());
+                DBModulManager = new DbManagerModule(container.GetInstance<IService<MapObjectPin>>(), container.GetInstance<IService<Category>>());
             });
         }
 
@@ -61,7 +64,10 @@ namespace MyMap
         {
             InitializeComponent();
             Info = new AppModelInfo();
+            dataContainer = new DataContainer();
             GetData();
+            GetLocalization();
+            GetTheme();
             await NavigationService.NavigateAsync("NavigationPage/MainPage");
         }
 
@@ -72,13 +78,50 @@ namespace MyMap
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
             containerRegistry.RegisterForNavigation<SideBarPopupPage, SideBarViewModel>();
+            containerRegistry.RegisterForNavigation<GroupMapObjectPage, GroupMapObjectViewModel>();
+            containerRegistry.RegisterForNavigation<EditCategoryPage, EditCategoryViewModel>();
+            containerRegistry.RegisterForNavigation<SettingPage, SettingsViewModel>();
 
             containerRegistry.RegisterForNavigation<EditPinDialogPage, EditPinDialogViewModel>();
-
+            containerRegistry.RegisterForNavigation<ShareMapDialogPage, ShareMapDialogViewModel>();
+            containerRegistry.RegisterForNavigation<EditCategoryDialogPage, EditCategoryDialogViewModel>();
+            containerRegistry.RegisterForNavigation<LanguageDialogPage, LanguageDialogViewModel>();
             containerRegistry.RegisterPopupNavigationService();
 
            
 
+        }
+        private void GetLocalization()
+        {
+            try
+            {
+                var language = dataContainer.GetValue(App.Info.LanguageKey);
+                if (language != null)
+                {
+                    CultureInfo selectedCulture = new CultureInfo(language.ToString());
+                    CultureInfo.DefaultThreadCurrentCulture = selectedCulture;
+                    CultureInfo.DefaultThreadCurrentUICulture = selectedCulture;
+                    CultureInfo.CurrentCulture = selectedCulture;
+                    CultureInfo.CurrentUICulture = selectedCulture;
+                }
+            }
+            catch { }
+
+        }
+        private void GetTheme()
+        {
+            try
+            {
+                var theme = dataContainer.GetValue(App.Info.ThemeKey).ToString();
+                if (theme != null)
+                {
+                    if (theme == "Dark")
+                        Application.Current.UserAppTheme = OSAppTheme.Dark;
+                    else
+                        Application.Current.UserAppTheme = OSAppTheme.Light;
+                }
+            }
+            catch { }
         }
     }
 }

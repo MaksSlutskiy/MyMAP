@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
 using CoreGraphics;
+using Foundation;
 using MapKit;
 using MyMap.CustomViews;
+using MyMap.Interface;
 using MyMap.iOS.CustomViews;
 using MyMap.Model;
 using UIKit;
@@ -18,6 +22,7 @@ namespace MyMap.iOS.CustomViews
     {
         UIView customPinView;
         List<CustomPin> customPins;
+        MKMapView MapView;
 
         protected override void OnElementChanged(ElementChangedEventArgs<View> e)
         {
@@ -39,13 +44,23 @@ namespace MyMap.iOS.CustomViews
             if (e.NewElement != null)
             {
                 var formsMap = (CustomMap)e.NewElement;
-                var nativeMap = Control as MKMapView;
+                MapView = Control as MKMapView;
                 customPins = formsMap.CustomPins;
 
-                nativeMap.GetViewForAnnotation = GetViewForAnnotation;
+                MapView.GetViewForAnnotation = GetViewForAnnotation;
                 //nativeMap.CalloutAccessoryControlTapped += OnCalloutAccessoryControlTapped;
                 //nativeMap.DidSelectAnnotationView += OnDidSelectAnnotationView;
                 //nativeMap.DidDeselectAnnotationView += OnDidDeselectAnnotationView;
+            }
+        }
+        protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            base.OnElementPropertyChanged(sender, e);
+
+            if (e.PropertyName == CustomMap.IsUpdateProperty.PropertyName)
+            {
+                customPins = ((CustomMap)sender).CustomPins;
+                MapView.GetViewForAnnotation = GetViewForAnnotation;
             }
         }
 
@@ -60,16 +75,20 @@ namespace MyMap.iOS.CustomViews
                 throw new Exception("Custom pin not found");
             }
             annotationView = mapView.DequeueReusableAnnotation(customPin.Label);
-            if (annotationView == null)
-            {
+            //if (annotationView == null)
+            //{
                 annotationView = new MKAnnotationView(annotation, customPin.Label);
                 //annotationView.Image = UIImage.FromFile("pin.png");
-                annotationView.Image = UIImage.FromFile(customPin.Icon);
+                Xamarin.Forms.Color color = Xamarin.Forms.Color.FromHex(customPin.Color);
+                UIImage image = GetColoredImage(customPin.Icon, color.ToUIColor());
+                annotationView.Image = image;
+
                 annotationView.CalloutOffset = new CGPoint(0, 0);
                 int width = 40;
                 int height = 40;
-                annotationView.Frame = new CGRect(0,0,width, height);
-            }
+                annotationView.Frame = new CGRect(0, 0, width, height);
+
+            //}
             annotationView.CanShowCallout = true;
             return annotationView;
         }
@@ -85,6 +104,31 @@ namespace MyMap.iOS.CustomViews
             }
             return null;
         }
+
+        private UIImage GetColoredImage(string path,UIColor color)
+        {
+            UIImage image = UIImage.FromFile(path);
+            UIImage coloredImage = null;
+            if (color == null)
+                color = UIColor.Black;
+            UIGraphics.BeginImageContext(image.Size);
+            using (CGContext context = UIGraphics.GetCurrentContext())
+            {
+                context.TranslateCTM(0, image.Size.Height);
+                context.ScaleCTM(1.0f, -1.0f);
+
+                var rect = new RectangleF(0, 0, (float)image.Size.Width, (float)image.Size.Height);
+
+                context.ClipToMask(rect, image.CGImage);
+                context.SetFillColor(color.CGColor);
+                context.FillRect(rect);
+
+                coloredImage = UIGraphics.GetImageFromCurrentImageContext();
+                UIGraphics.EndImageContext();
+            }
+            return coloredImage;
+        }
+
         //void OnDidSelectAnnotationView(object sender, MKAnnotationViewEventArgs e)
         //{
         //    //CustomMKAnnotationView customView = e.View as CustomMKAnnotationView;

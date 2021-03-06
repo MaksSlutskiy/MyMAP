@@ -8,6 +8,7 @@ namespace MyMap.CustomViews
         public string Name { get; set; }
         public string Icon { get; set; }
         public string Description { get; set; }
+        public string Color { get; set; }
         //public ObservableCollection<Image> Images { get; set; }
         //public Category Category { get; set; }
     }

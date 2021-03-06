@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                  xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"  
+             xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+                  xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
+             ios:Page.UseSafeArea="true"
+                   BackgroundColor="{AppThemeBinding Dark={StaticResource DarkBackground},Light={StaticResource LightBackground}}"
+                   CloseWhenBackgroundIsClicked ="True"
+                   xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+                  xmlns:converters ="clr-namespace:MyMap.ConvertData"
+                   xmlns:customviews="clr-namespace:MyMap.CustomViews"
+             x:Class="MyMap.Views.DialogViews.LanguageDialogPage">
+    <pages:PopupPage.Animation>
+        <animations:MoveAnimation 
+            PositionIn="Bottom" 
+            PositionOut="Bottom" 
+            DurationIn="400" 
+            DurationOut="300" 
+            EasingIn="SinOut" 
+            EasingOut="SinIn" 
+            HasBackgroundAnimation="True"/>
+    </pages:PopupPage.Animation>
+    <pages:PopupPage.Resources>
+        <Style TargetType="RadioButton">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CheckedStates">
+                        <VisualState x:Name="Checked">
+                            <VisualState.Setters>
+                                <Setter Property="TextColor"
+                                        Value="{StaticResource Button}" />
+                                <Setter Property="Opacity"
+                                        Value="1" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Unchecked">
+                            <VisualState.Setters>
+                                <Setter Property="TextColor"
+                                        Value="{AppThemeBinding Dark={StaticResource ToolBarBackDarkColor},Light={StaticResource TextLightMainColor}}" />
+                                <!--<Setter Property="BorderColor"
+                                        Value="Transparent" />-->
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+        <ResourceDictionary>
+            <converters:EnumToStringConverter x:Key="EnumConverter"/>
+        </ResourceDictionary>
+    </pages:PopupPage.Resources>
+    <pancakeview:PancakeView Margin="20"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundListItemColor},Light={StaticResource BackgroundListColor}}" CornerRadius="20">
+         <pancakeView:PancakeView.Shadow>
+            <pancakeView:DropShadow Color="Black" Offset="1, 1" />
+        </pancakeView:PancakeView.Shadow>
+        <StackLayout>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <pancakeView:PancakeView  HeightRequest="55" WidthRequest="55" Margin="20,30,20,15" Grid.Row="0" HorizontalOptions="End" BackgroundColor="{AppThemeBinding Dark={StaticResource ToolBarBackDarkColor},Light={StaticResource ToolBarBackLightColor}}">
+                    <customviews:ExtendedImage HeightRequest="30" WidthRequest="30" VerticalOptions="Center" HorizontalOptions="Center" Source="outline_clear.png"  TintColor="{StaticResource ToolBarBackTintColor}" />
+                    <pancakeView:PancakeView.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding CloseCommand}"></TapGestureRecognizer>
+                    </pancakeView:PancakeView.GestureRecognizers>
+
+                    <pancakeView:PancakeView.CornerRadius>
+                        <OnPlatform x:TypeArguments="CornerRadius" iOS="30" Android="40"/>
+                    </pancakeView:PancakeView.CornerRadius>
+                </pancakeView:PancakeView>
+                <Label Text="Select language" FontSize="Title" TextColor="{StaticResource TextDarkColor}" Grid.Row="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"></Label>
+
+
+                <StackLayout BindableLayout.ItemsSource="{Binding Languages}" Spacing="0" Orientation="Vertical"
+                             HorizontalOptions="Start" Margin="15, 0, 15, 0" Grid.Row="1">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <RadioButton FontSize="Subtitle" IsChecked="{Binding IsChange}"  BackgroundColor="Transparent"
+                                         Content="{Binding Name,Converter={x:StaticResource EnumConverter}}"
+                                         />
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+                <!--<StackLayout Orientation="Horizontal" HorizontalOptions="End" Margin="15, 0, 15, 10" Grid.Row="2">
+                    <Button Text="Save" BackgroundColor="{StaticResource Button}" TextColor="#ffffff"
+                                FontSize="Default" CornerRadius="20"
+                                HorizontalOptions="FillAndExpand" Command="{Binding SaveCommand}">
+                        <Button.WidthRequest>
+                            <OnPlatform x:TypeArguments="x:Double" iOS ="100" Android ="130"/>
+                        </Button.WidthRequest>
+                        <customviews:ExtendedPicker.BorderWidth>
+                                    <OnPlatform x:TypeArguments="x:Double" iOS ="0.5" Android ="1"/>
+                                </customviews:ExtendedPicker.BorderWidth>
+
+                    </Button>
+                    <Button Text="Cancel" BackgroundColor="{StaticResource Button}"
+                                TextColor="#ffffff" FontSize="Default" CornerRadius="20"
+                                HorizontalOptions="FillAndExpand" Command="{Binding CloseCommand}">
+                    <Button.WidthRequest>
+                        <OnPlatform x:TypeArguments="x:Double" iOS ="100" Android ="130"/>
+                    </Button.WidthRequest>
+                </Button>
+                </StackLayout>-->
+
+            </Grid>
+            <pancakeView:PancakeView  x:Name="pancake" HeightRequest="50" BackgroundColor="{StaticResource Button}">
+                <!--<pancakeView:PancakeView.BackgroundGradientStops>
+                    <pancakeView:GradientStopCollection>
+                        <pancakeView:GradientStop Color="#FF4157" Offset="0" />
+                        <pancakeView:GradientStop Color="#FF4359" Offset="0.5" />
+                        <pancakeView:GradientStop Color="#FE93C5" Offset="1" />
+                    </pancakeView:GradientStopCollection>
+                </pancakeView:PancakeView.BackgroundGradientStops>-->
+                <Label Text="Save" TextColor="{AppThemeBinding Dark={StaticResource ButtonTextDarkColor},Light={StaticResource ButtonTextLightColor}}" FontSize="15" FontFamily="ThemeFontBold" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
+                <pancakeView:PancakeView.GestureRecognizers>
+                    <TapGestureRecognizer  Command="{Binding BindingContext.SaveCommand,Source={x:Reference pancake}}"></TapGestureRecognizer>
+                </pancakeView:PancakeView.GestureRecognizers>
+            </pancakeView:PancakeView>
+        </StackLayout>
+    </pancakeview:PancakeView>
+</pages:PopupPage>

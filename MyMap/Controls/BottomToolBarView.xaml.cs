@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
@@ -101,22 +102,26 @@ namespace MyMap.Controls
         {
             base.OnPropertyChanged(propertyName);
 
-            if (propertyName.Contains(nameof(BarDetailBackgroundColor)))
-            {
-                DetailToolbar.BackgroundColor = BarDetailBackgroundColor;
-            }
+            //if (propertyName.Contains(nameof(BarDetailBackgroundColor)))
+            //{
+            //   DetailToolbar.BackgroundColor = BarDetailBackgroundColor;
+            //}
+            //if (propertyName.Contains(nameof(BarBackgroundColor)))
+            //{
+            //    this.BackgroundColor = BarBackgroundColor;
+            //}
         }
 
         private void SetValue(List<ViewItem> items)
         {
-            items.Insert(0, new ViewItem { ImageSource = "outline_arrow.png", Title = string.Empty });
-            DetailToolbar.BackgroundColor = BarDetailBackgroundColor;
-
+            //items.Insert(0, new ViewItem { ImageSource = "outline_arrow.png", Title = string.Empty });
+            //DetailToolbar.BackgroundColor = BarDetailBackgroundColor;
+            SToolbar.Children.Clear();
             var index = 0;
             var toolbar = new Grid
             {
                 BackgroundColor = BarBackgroundColor,
-                HeightRequest = 50,
+                HeightRequest = 70,
                 RowSpacing = 0,
                 HorizontalOptions = LayoutOptions.FillAndExpand
             };
@@ -125,46 +130,57 @@ namespace MyMap.Controls
             foreach (var item in items)
             {
                 toolbar.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(items.Count + 1, GridUnitType.Star) });
-
+                var stack = new StackLayout { Orientation = StackOrientation.Vertical,  Margin = new Thickness(0, 10, 0, 10), };
                 var image = new ExtendedImageButton
                 {
                     Source = item.ImageSource,
                     HeightRequest = 27,
                     WidthRequest = 27,
-                    TintColor = Color.White,
+                   
+                    TintColor = (Color)App.Current.Resources["TextDarkColor"],
                     BackgroundColor = Color.Transparent,
                     VerticalOptions = LayoutOptions.CenterAndExpand,
                     HorizontalOptions = LayoutOptions.CenterAndExpand
                 };
+                stack.Children.Add(image);
+                var label = new Label { Text = item.Title,
+                    TextColor = (Color)App.Current.Resources["TextDarkColor"],
+                    HorizontalOptions = LayoutOptions.CenterAndExpand,
+                    VerticalOptions = LayoutOptions.StartAndExpand
+                };
+                stack.Children.Add(label);
+                //if (index == 0)
+                //{
+                //    image.Clicked += async (s, e) =>
+                //    {
+                //        if (!DetailToolbar.IsVisible)
+                //        {
+                //            await image.RotateTo(180, 150);
+                //            await this.TranslateTo(0.0f, -15f, 150);
+                //            DetailToolbar.IsVisible = true;
+                //        }
+                //        else
+                //        {
+                //            await image.RotateTo(0, 150);
+                //            await this.TranslateTo(0.0f, (items.Count - 1) * 44, 150);
+                //            DetailToolbar.IsVisible = false;
+                //        }
+                //    };
+                //}
+                //else
+                //{
+                var _expandGestureRecognizer = new TapGestureRecognizer();
+                _expandGestureRecognizer.Command = new Command(() => ItemSelected.Execute(item));
 
-                if (index == 0)
-                {
-                    image.Clicked += async (s, e) =>
-                    {
-                        if (!DetailToolbar.IsVisible)
-                        {
-                            await image.RotateTo(180, 150);
-                            await this.TranslateTo(0.0f, -15f, 150);
-                            DetailToolbar.IsVisible = true;
-                        }
-                        else
-                        {
-                            await image.RotateTo(0, 150);
-                            await this.TranslateTo(0.0f, (items.Count - 1) * 44, 150);
-                            DetailToolbar.IsVisible = false;
-                        }
-                    };
-                }
-                else
-                {
-                    image.Command = new Command(() => ItemSelected.Execute(item));
-                }
-                toolbar.Children.Add(image, index++, 0);
+                stack.GestureRecognizers.Add(_expandGestureRecognizer);
+                image.Command = new Command(() => ItemSelected.Execute(item));
+                //}
+                toolbar.Children.Add(stack, index++, 0);
             }
 
             SToolbar.Children.Add(toolbar, 0, 0);
-            SToolbar.HeightRequest = (items.Count - 1) * 44 + 50;
-            TranslationY = (items.Count - 1) * 44;
+            //SToolbar.HeightRequest = (items.Count - 1) * 44 + 50;
+            //TranslationY = (items.Count - 1) * 44;
         }
 
         public void Dispose()
@@ -173,9 +189,29 @@ namespace MyMap.Controls
         }
     }
 
-    public class ViewItem
+    public class ViewItem : INotifyPropertyChanged
     {
-        public string Title { get; set; }
+        private string _title;
+        public string Title
+        {
+            get => _title;
+            set
+            {
+                if (_title != value)
+                {
+                    _title = value;
+                    OnPropertyChanged("Title");
+                }
+            }
+        }
         public string ImageSource { get; set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(string propName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
+        }
     }
+
 }

@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:customviews="clr-namespace:MyMap.CustomViews"
+              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             NavigationPage.HasNavigationBar="false"
+              xmlns:b="http://prismlibrary.com"
+              xmlns:converters="clr-namespace:MyMap.ConvertData"
+              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+               mc:Ignorable="d"
+             BackgroundColor="{AppThemeBinding Dark={StaticResource DarkBackground},Light={StaticResource LightBackground}}"
+             xmlns:controls="clr-namespace:MyMap.Controls" 
+             x:Class="MyMap.Views.GroupMapObjectPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ItemTappedConverter x:Key="ItemTappedConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+
+
+    <ContentPage.Content>
+        <Grid x:Name="Grid" RowDefinitions="auto,*, auto" RowSpacing="0" >
+
+            <pancakeView:PancakeView  HeightRequest="55" WidthRequest="55" Margin="20,30,20,30" Grid.Row="0" HorizontalOptions="Start" BackgroundColor="{AppThemeBinding Dark={StaticResource ToolBarBackDarkColor},Light={StaticResource ToolBarBackLightColor}}">
+                <customviews:ExtendedImage HeightRequest="30" WidthRequest="30" VerticalOptions="Center" HorizontalOptions="Center" Source="outline_arrow_back"  TintColor="{StaticResource ToolBarBackTintColor}" />
+                <pancakeView:PancakeView.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding BackCommand}"></TapGestureRecognizer>
+                </pancakeView:PancakeView.GestureRecognizers>
+
+                <pancakeView:PancakeView.CornerRadius>
+                    <OnPlatform x:TypeArguments="CornerRadius" iOS="30" Android="40"/>
+                </pancakeView:PancakeView.CornerRadius>
+            </pancakeView:PancakeView>
+            <Label Text="Archive Pins" FontSize="Title" TextColor="{StaticResource TextDarkColor}" Grid.Row="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"></Label>
+            <ListView x:Name="SourceItems" Grid.Row="1"  ItemsSource="{Binding SourceItems}" 
+                    SelectionMode="None" SeparatorVisibility="None" BackgroundColor="Transparent"
+                          IsGroupingEnabled="true"  CachingStrategy="RecycleElement" VerticalScrollBarVisibility="Never">
+                <!--<ListView.Behaviors>
+                    <b:EventToCommandBehavior EventName="ItemTapped" Command="{Binding ItemTappedCommand}" EventArgsConverter="{StaticResource ItemTappedConverter}"/>
+                </ListView.Behaviors>-->
+                <ListView.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <customviews:ExtendedViewCell SelectedBackgroundColor="Transparent" >
+                            <Grid Padding="10,0,10,0"  ColumnSpacing="0" RowSpacing="0"  ColumnDefinitions="30,*,30" RowDefinitions="*,1" BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundListItemColor},Light={StaticResource BackgroundListColor}}">
+                                <CheckBox x:Name="CheckBox" VerticalOptions="CenterAndExpand"  Grid.Column="0"  Grid.Row="0" IsChecked="{Binding IsEnabledObjectGroup}"   Color="{AppThemeBinding Dark={StaticResource TextDarkColor},Light={StaticResource Button}}" >
+                                </CheckBox>
+                                <Label Grid.Column="1"  Grid.Row="0" Text="{Binding ObjectGroup}" TextColor="{AppThemeBinding Dark={StaticResource TextDarkColor},Light={StaticResource Button}}" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding ObjectGroup}"/>
+                                            <Span Text=" (" />
+                                            <Span Text="{Binding Count}" ForegroundColor="{AppThemeBinding Dark={StaticResource TextDarkColor},Light={StaticResource Button}}"/>
+                                            <Span Text=")"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <customviews:ExtendedImage Grid.Row="0" Grid.Column="2"  Source="outline_arrow.png" RotationX="{Binding Rotation}"    TintColor="{AppThemeBinding Dark={StaticResource TextDarkColor},Light={StaticResource Button}}">
+                                    <customviews:ExtendedImage.HeightRequest>
+                                        <OnPlatform x:TypeArguments="x:Double" iOS ="20" Android ="30"/>
+                                    </customviews:ExtendedImage.HeightRequest>
+                                    <customviews:ExtendedImage.WidthRequest>
+                                        <OnPlatform x:TypeArguments="x:Double" iOS ="20" Android ="30"/>
+                                    </customviews:ExtendedImage.WidthRequest>
+                                    <customviews:ExtendedImage.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Source={x:Reference SourceItems}, Path=BindingContext.DetailObjectCommand}" CommandParameter="{Binding .}" NumberOfTapsRequired="1"/>
+                                    </customviews:ExtendedImage.GestureRecognizers>
+                                </customviews:ExtendedImage>
+
+                                <BoxView Margin="-10,0,-10,0" Grid.Row="1" HeightRequest="1" Grid.Column="0" Grid.ColumnSpan="3"    BackgroundColor="{AppThemeBinding Dark={StaticResource DarkBackground},Light={StaticResource LightBackground}}"/>
+                            </Grid>
+
+
+                        </customviews:ExtendedViewCell>
+                    </DataTemplate>
+                </ListView.GroupHeaderTemplate>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid RowDefinitions="*,1">
+                                <SwipeView Grid.Row="0" >
+                                    <SwipeView.RightItems>
+                                        <SwipeItems SwipeBehaviorOnInvoked="RemainOpen" >
+                                            <!--<SwipeItem Text="Favorite"
+                           IconImageSource="outline_pin.png"
+                           BackgroundColor="LightGreen"
+                           Invoked="OnFavoriteSwipeItemInvoked" />-->
+                                            <SwipeItem  IsDestructive="True"
+                           IconImageSource="outline_clear.png"
+                           BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundListItemColor},Light={StaticResource BackgroundListColor}}"
+                                             CommandParameter="{Binding .}"
+                                            Command="{Binding Source={x:Reference SourceItems}, Path=BindingContext.RemoveItemCommand}"
+                           />
+                                        </SwipeItems>
+                                    </SwipeView.RightItems>
+                                    <!-- Content -->
+
+                                    <StackLayout Orientation="Horizontal"  Margin="15,5,15,5">
+                                        <CheckBox IsChecked="{Binding IsVisible}" CheckedChanged="CheckBox_CheckedChanged" Color="{AppThemeBinding Dark={StaticResource TextDarkColor},Light={StaticResource Button}}"></CheckBox>
+                                        <Label Text="{Binding Name}" TextColor="{AppThemeBinding Dark={StaticResource ToolBarBackDarkColor},Light={StaticResource TextLightMainColor}}" FontSize="Small" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand"/>
+
+                                        <StackLayout HorizontalOptions="End" WidthRequest="50">
+                                            <customviews:ExtendedImageButton BackgroundColor="Transparent" TintColor="{AppThemeBinding Dark={StaticResource TextDarkColor},Light={StaticResource Button}}" Command="{Binding Source={x:Reference SourceItems}, Path=BindingContext.SettingsObjectCommand}" CommandParameter="{Binding .}" Source="outline_settings_points_white.png" HeightRequest="30" WidthRequest="30">
+                                                <!--<customviews:ExtendedImage.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Source={x:Reference SourceItems}, Path=BindingContext.SettingsObjectCommand}" CommandParameter="{Binding .}" NumberOfTapsRequired="1"/>
+                                            </customviews:ExtendedImage.GestureRecognizers>-->
+                                            </customviews:ExtendedImageButton>
+                                            <StackLayout.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Source={x:Reference SourceItems}, Path=BindingContext.SettingsObjectCommand}" CommandParameter="{Binding .}"></TapGestureRecognizer>
+                                            </StackLayout.GestureRecognizers>
+                                        </StackLayout>
+
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding Source={x:Reference SourceItems}, Path=BindingContext.ItemTappedCommand}" CommandParameter="{Binding .}"></TapGestureRecognizer>
+                                        </StackLayout.GestureRecognizers>
+
+
+                                    </StackLayout>
+
+                                </SwipeView>
+                                <BoxView Grid.Row="1" HeightRequest="1"     BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundListItemColor},Light={StaticResource BackgroundListColor}}"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <controls:BottomToolBarView 
+             ItemsSource="{Binding ToolbarItems}" x:Name="BottomBar"
+                                 ItemSelected="{Binding ItemSelectionChangedCommand}"
+                                 Grid.Row="2"/>
+            <BoxView x:Name="BoxView" IsVisible="false" HeightRequest="21" Grid.Row="2" VerticalOptions="EndAndExpand" BackgroundColor="{AppThemeBinding Dark={StaticResource ToolBarDarkColor},Light={StaticResource White}}"></BoxView>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

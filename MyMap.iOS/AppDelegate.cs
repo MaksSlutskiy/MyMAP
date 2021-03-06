@@ -27,7 +27,6 @@ namespace MyMap.iOS
             Xamarin.FormsMaps.Init();
             SQLitePCL.Batteries.Init();
             global::Xamarin.Forms.Forms.Init();
-
             LoadApplication(new App(new iOSInitializer()));
             UINavigationBar.Appearance.TintColor = UIColor.FromRGB(255, 255, 255);
             UINavigationBar.Appearance.Translucent = false;

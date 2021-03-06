@@ -74,12 +74,12 @@ namespace MyMap.Service
         {
             return Task.Run(() =>
             {
-                try
-                {
-                    var entity = mapper.Map<IEnumerable<MapObject>>(dto);
-                    uow.MapObjectRepository.UpdateRange(entity);
+            try
+            {
+                var entity = mapper.Map<IEnumerable<MapObject>>(dto);
+                uow.MapObjectRepository.UpdateRange(entity);
 
-                    return true;
+                return true;
                 }
                 catch
                 {
@@ -107,10 +107,10 @@ namespace MyMap.Service
                 try
                 {
                     var entity = mapper.Map<MapObject>(dto);
-                    uow.MapObjectRepository.Update(entity);
+                    uow.MapObjectRepository.Update(entity, dto.Id);
                     return true;
                 }
-                catch
+                catch(Exception ex)
                 {
                     return false;
                 }

@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<pages:PopupPage  xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              BackgroundColor="#99000000"
+                  xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup" xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+  CloseWhenBackgroundIsClicked ="False"
+             x:Class="MyMap.Views.DialogViews.LoadingPage">
+    <pages:PopupPage.Animation>
+        <animations:MoveAnimation
+            PositionIn="Bottom"
+            PositionOut="Bottom"
+            DurationIn="400"
+            DurationOut="300"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="True"/>
+    </pages:PopupPage.Animation>
+    <Grid RowSpacing="0" ColumnSpacing="0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".5*"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height=".5*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <pancakeview:PancakeView Grid.Column="1" Grid.Row="1"  Opacity="100" 
+               Padding="15, 10, 15, 10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <StackLayout>
+                <ActivityIndicator IsRunning="True" Color="#388E3C">
+                    <ActivityIndicator.Margin>
+                        <OnPlatform x:TypeArguments="Thickness" iOS="0, 25, 0, 15" Android="5"/>
+                    </ActivityIndicator.Margin>
+                    <ActivityIndicator.HeightRequest>
+                        <OnPlatform x:TypeArguments="x:Double" iOS="30" Android="100"/>
+                    </ActivityIndicator.HeightRequest>
+                    <ActivityIndicator.WidthRequest>
+                        <OnPlatform x:TypeArguments="x:Double" iOS ="30" Android="100"/>
+                    </ActivityIndicator.WidthRequest>
+                </ActivityIndicator>
+                <Label Text="Loading" TextColor="Black" Margin="5" HorizontalOptions="Center"/>
+            </StackLayout>
+        </pancakeview:PancakeView>
+    </Grid>
+</pages:PopupPage>
