@@ -8,8 +8,12 @@
                   xmlns:behaviors="clr-namespace:MyMap.Extensions;assembly=MyMap"
              xmlns:b="http://prismlibrary.com"
              mc:Ignorable="d"
+                  xmlns:translate="clr-namespace:MyMap.Helps;assembly=MyMap"
             HasKeyboardOffset="True"
-                  CloseWhenBackgroundIsClicked ="True"
+                 xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
+             ios:Page.UseSafeArea="true"
+                   BackgroundColor="{AppThemeBinding Dark={StaticResource DarkBackground},Light={StaticResource LightBackground}}"
+                   CloseWhenBackgroundIsClicked ="True"
                   xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
                   xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
                   xmlns:converters="clr-namespace:MyMap.ConvertData"
@@ -59,32 +63,54 @@
         </Grid>
     </pancakeView:PancakeView>-->
 
-    <pancakeView:PancakeView x:Name="DetailsView"  CornerRadius="30,30,0,0" VerticalOptions="EndAndExpand"
-                        BackgroundColor="White" >
-        <ScrollView  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" VerticalScrollBarVisibility="Never">
-            <StackLayout Spacing="15" HorizontalOptions="FillAndExpand">
-                <Grid Margin="10,25,10,0" HorizontalOptions="FillAndExpand">
-                    <StackLayout Orientation="Horizontal" Spacing="5" HorizontalOptions="FillAndExpand">
-                        <Image HeightRequest="20" WidthRequest="20" Source="outline_pin.png" VerticalOptions="Center" HorizontalOptions="Start"/>
-                        <Label Text="{Binding Address}" FontSize="15" TextColor="Black" FontFamily="ThemeFontRegular" HorizontalOptions="Start" VerticalOptions="Center"/>
-                    <customviews:ExtendedImageButton Command="{Binding EditCommand}" BackgroundColor="Transparent"
-                                                     Aspect="Fill" TintColor="{Binding TintColor}" HeightRequest="30" WidthRequest="30"
+    <pancakeView:PancakeView x:Name="DetailsView"   Margin="20"  HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
+                        BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundListItemColor},Light={StaticResource BackgroundListColor}}" CornerRadius="20" >
+        <pancakeView:PancakeView.Shadow>
+            <pancakeView:DropShadow Color="Black" Offset="1, 1" />
+        </pancakeView:PancakeView.Shadow>
+
+        <Grid RowDefinitions="*,auto">
+            <ScrollView  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" VerticalScrollBarVisibility="Never">
+                <StackLayout Spacing="15" HorizontalOptions="FillAndExpand" Grid.Row="0">
+                    <Grid Margin="10,25,10,0" RowDefinitions="auto,*" HorizontalOptions="FillAndExpand">
+
+                        <pancakeView:PancakeView  HeightRequest="55" WidthRequest="55" Margin="20,15,20,15" Grid.Row="0" HorizontalOptions="End" BackgroundColor="{AppThemeBinding Dark={StaticResource ToolBarBackDarkColor},Light={StaticResource ToolBarBackLightColor}}">
+                            <customviews:ExtendedImage HeightRequest="30" WidthRequest="30" VerticalOptions="Center" HorizontalOptions="Center" Source="outline_clear.png"  TintColor="{StaticResource ToolBarBackTintColor}" />
+                            <pancakeView:PancakeView.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CloseCommand}"></TapGestureRecognizer>
+                            </pancakeView:PancakeView.GestureRecognizers>
+
+                            <pancakeView:PancakeView.CornerRadius>
+                                <OnPlatform x:TypeArguments="CornerRadius" iOS="30" Android="40"/>
+                            </pancakeView:PancakeView.CornerRadius>
+                        </pancakeView:PancakeView>
+                        <Label Text="{translate:Translate EditPin_Title}" FontSize="Title" TextColor="{StaticResource TextDarkColor}" Grid.Row="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"></Label>
+
+                        <StackLayout Orientation="Vertical" Grid.Row="1">
+                            <Label Text="{translate:Translate EditPin_Address}" FontSize="15" FontFamily="ThemeFontBold" TextColor="{AppThemeBinding Dark={StaticResource TextDarkColor},Light={StaticResource TextLightColor}}"/>
+
+                            <StackLayout Orientation="Horizontal" Spacing="5" HorizontalOptions="FillAndExpand">
+                                <customviews:ExtendedImage HeightRequest="20" WidthRequest="20" TintColor="{AppThemeBinding Dark={StaticResource Button},Light={StaticResource Black}}" Source="outline_pin.png" VerticalOptions="Center" HorizontalOptions="Start"/>
+                                <Label Text="{Binding Address}" FontSize="15" TextColor="{AppThemeBinding Dark={StaticResource ToolBarBackDarkColor},Light={StaticResource TextLightMainColor}}" FontFamily="ThemeFontRegular" HorizontalOptions="Start" VerticalOptions="Center"/>
+                                <customviews:ExtendedImageButton Command="{Binding EditCommand}" BackgroundColor="Transparent"
+                                                     Aspect="Fill" TintColor="{AppThemeBinding Dark={StaticResource TextDarkColor},Light={StaticResource Button}}" HeightRequest="30" WidthRequest="30"
                                                      Source="outline_edit.png" VerticalOptions="Center" Margin="10,0,10,0" HorizontalOptions="EndAndExpand"/>
-                     </StackLayout>
-                </Grid>
-                <StackLayout Margin="10,0,10,0" Grid.Row="1" Spacing="15" >
-                    <Label Text="Name" FontSize="15" FontFamily="ThemeFontBold" TextColor="#515151"/>
-                    <Entry  Text="{Binding Name,Mode=TwoWay}" IsEnabled="{Binding IsEdit}">
-                        <Entry.Behaviors>
-                            <behaviors:EntryLengthValidatorBehavior MaxLength="40" />
-                        </Entry.Behaviors>
-                    </Entry>
-                    <Label Text="Category" FontSize="15" FontFamily="ThemeFontBold" TextColor="#515151"/>
-                    <StackLayout Orientation="Horizontal">
-                        <customviews:ExtendedImage TintColor="{Binding Category.Color}" HeightRequest="20" WidthRequest="20" Source="outline_pinMap.png" VerticalOptions="Center" HorizontalOptions="Start"/>
-                        <Label Text="{Binding Category.Name}" FontSize="15" FontFamily="ThemeFontBold" TextColor="#515151"></Label>
-                    </StackLayout>
-                    <!--<StackLayout Orientation="Horizontal" Spacing="15">
+                            </StackLayout>
+                        </StackLayout>
+                    </Grid>
+                    <StackLayout Margin="10,0,10,0" Grid.Row="1" Spacing="15" >
+                        <Label Text="{translate:Translate Share_Name}" FontSize="15" FontFamily="ThemeFontBold" TextColor="{AppThemeBinding Dark={StaticResource TextDarkColor},Light={StaticResource TextLightColor}}"/>
+                        <Entry  Text="{Binding Name,Mode=TwoWay}" TextColor="{AppThemeBinding Dark={StaticResource ToolBarBackDarkColor},Light={StaticResource TextLightMainColor}}" IsEnabled="{Binding IsEdit}">
+                            <Entry.Behaviors>
+                                <behaviors:EntryLengthValidatorBehavior MaxLength="40" />
+                            </Entry.Behaviors>
+                        </Entry>
+                        <Label Text="{translate:Translate EditPin_Category}" FontSize="15" FontFamily="ThemeFontBold" TextColor="{AppThemeBinding Dark={StaticResource TextDarkColor},Light={StaticResource TextLightColor}}"/>
+                        <StackLayout Orientation="Horizontal">
+                            <customviews:ExtendedImage TintColor="{Binding Category.Color}" HeightRequest="20" WidthRequest="20" Source="outline_pinMap.png" VerticalOptions="Center" HorizontalOptions="Start"/>
+                            <Label Text="{Binding Category.Name}" FontSize="15" FontFamily="ThemeFontBold" TextColor="{AppThemeBinding Dark={StaticResource ToolBarBackDarkColor},Light={StaticResource TextLightMainColor}}"></Label>
+                        </StackLayout>
+                        <!--<StackLayout Orientation="Horizontal" Spacing="15">
                         <StackLayout Orientation="Horizontal" Spacing="10">
                             <Image WidthRequest="16" Source="bed.png"/>
                             <Label Text="{Binding Property.Bed}" FontSize="12" FontFamily="ThemeFontRegular" TextColor="#707070"/>
@@ -98,51 +124,53 @@
                             <Label Text="{Binding Property.Space}" FontSize="12" FontFamily="ThemeFontRegular" TextColor="#707070"/>
                         </StackLayout>
                     </StackLayout>-->
-                </StackLayout>
-                <BoxView Margin="10,0,10,0" HeightRequest="1" VerticalOptions="Start" HorizontalOptions="FillAndExpand" BackgroundColor="#E4E4E4"/>
-                <ScrollView Margin="10,0,10,0" Orientation="Horizontal">
-                    <StackLayout x:Name="CategoryList" BindableLayout.ItemsSource="{Binding SourceItemsCategory}" Orientation="Horizontal" Spacing="30" HorizontalOptions="Center">
-                        <BindableLayout.ItemTemplate>
-                            <DataTemplate>
-                                <StackLayout IsEnabled="{Binding BindingContext.IsEdit,Source={x:Reference CategoryList}}">
-                                    <pancakeView:PancakeView BackgroundColor="#E9E9E9" HeightRequest="50" WidthRequest="50" CornerRadius="25" HorizontalOptions="Center">
-                                        <customviews:ExtendedImage WidthRequest="20" TintColor="{Binding Color}" HeightRequest="20" Source="outline_pinMap.png" HorizontalOptions="Center" VerticalOptions="Center"/>
-                                    </pancakeView:PancakeView>
-                                    <Label Text="{Binding Name}" TextColor="#8D8D8D" FontSize="14" FontFamily="ThemeFontMedium" HorizontalTextAlignment="Center"/>
-                                    <StackLayout.GestureRecognizers>
-                                        <TapGestureRecognizer
-                                                Command="{Binding BindingContext.SelectedCategoryCommand,Source={x:Reference CategoryList}}" CommandParameter="{Binding .}"/>
-                                    </StackLayout.GestureRecognizers>
-                                </StackLayout>
-                            </DataTemplate>
-                        </BindableLayout.ItemTemplate>
                     </StackLayout>
-                </ScrollView>
-                <BoxView Margin="10,0,10,0"  HeightRequest="1" VerticalOptions="Start" HorizontalOptions="FillAndExpand" BackgroundColor="#E4E4E4"/>
-                <Label Margin="10,0,10,0" Text="Description" FontSize="15" FontFamily="ThemeFontBold" TextColor="#515151"/>
-                <Frame Margin="10,0,10,0" CornerRadius="10" BorderColor="LightGray" HasShadow="False">
-                    <Editor  AutoSize="TextChanges" IsEnabled="{Binding IsEdit}" Placeholder="Description about pin" Text="{Binding Description,Mode=TwoWay}" FontSize="15" FontFamily="ThemeFontRegular" TextColor="#515151" BackgroundColor="Transparent"
+                    <BoxView Margin="10,0,10,0" HeightRequest="1" VerticalOptions="Start" HorizontalOptions="FillAndExpand" BackgroundColor="#E4E4E4"/>
+                    <ScrollView Margin="10,0,10,0" Orientation="Horizontal">
+                        <StackLayout x:Name="CategoryList" BindableLayout.ItemsSource="{Binding SourceItemsCategory}" Orientation="Horizontal" Spacing="30" HorizontalOptions="Center">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout IsEnabled="{Binding BindingContext.IsEdit,Source={x:Reference CategoryList}}">
+                                        <pancakeView:PancakeView BackgroundColor="#E9E9E9" HeightRequest="50" WidthRequest="50" CornerRadius="25" HorizontalOptions="Center">
+                                            <customviews:ExtendedImage WidthRequest="20" TintColor="{Binding Color}" HeightRequest="20" Source="outline_pinMap.png" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                        </pancakeView:PancakeView>
+                                        <Label Text="{Binding Name}" TextColor="#8D8D8D" FontSize="14" FontFamily="ThemeFontMedium" HorizontalTextAlignment="Center"/>
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer
+                                                Command="{Binding BindingContext.SelectedCategoryCommand,Source={x:Reference CategoryList}}" CommandParameter="{Binding .}"/>
+                                        </StackLayout.GestureRecognizers>
+                                    </StackLayout>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </StackLayout>
+                    </ScrollView>
+                    <BoxView Margin="10,0,10,0"  HeightRequest="1" VerticalOptions="Start" HorizontalOptions="FillAndExpand" BackgroundColor="#E4E4E4"/>
+                    <Label Margin="10,0,10,0" Text="{translate:Translate EditPin_Description}" FontSize="15" FontFamily="ThemeFontBold" TextColor="{AppThemeBinding Dark={StaticResource TextDarkColor},Light={StaticResource TextLightColor}}"/>
+                    <Frame Margin="10,0,10,0" CornerRadius="10" BorderColor="LightGray" HasShadow="False">
+                        <Editor  AutoSize="TextChanges" IsEnabled="{Binding IsEdit}" Placeholder="{translate:Translate EditPin_DescriptionText}" Text="{Binding Description,Mode=TwoWay}" FontSize="15" FontFamily="ThemeFontRegular" TextColor="#515151" BackgroundColor="Transparent"
                         HorizontalOptions="FillAndExpand">
-                        <Editor.Behaviors>
-                            <behaviors:EditorLengthValidatorBehavior MaxLength="515" />
-                        </Editor.Behaviors>
-                    </Editor>
-                </Frame>
-                <pancakeView:PancakeView x:Name="pancake" HeightRequest="50" >
-                    <pancakeView:PancakeView.BackgroundGradientStops>
+                            <Editor.Behaviors>
+                                <behaviors:EditorLengthValidatorBehavior MaxLength="515" />
+                            </Editor.Behaviors>
+                        </Editor>
+                    </Frame>
+
+                </StackLayout>
+            </ScrollView>
+            <pancakeView:PancakeView x:Name="pancake" Grid.Row="1" HeightRequest="50" BackgroundColor="{StaticResource Button}">
+                <!--<pancakeView:PancakeView.BackgroundGradientStops>
                         <pancakeView:GradientStopCollection>
                             <pancakeView:GradientStop Color="#FF4157" Offset="0" />
                             <pancakeView:GradientStop Color="#FF4359" Offset="0.5" />
                             <pancakeView:GradientStop Color="#FE93C5" Offset="1" />
                         </pancakeView:GradientStopCollection>
-                    </pancakeView:PancakeView.BackgroundGradientStops>
-                    <Label Text="{Binding SaveText}" TextColor="White" FontSize="15" FontFamily="ThemeFontBold" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
-                    <pancakeView:PancakeView.GestureRecognizers>
-                        <TapGestureRecognizer  Command="{Binding BindingContext.OkCommand,Source={x:Reference pancake}}"></TapGestureRecognizer>
-                    </pancakeView:PancakeView.GestureRecognizers>
-                </pancakeView:PancakeView>
-            </StackLayout>
-        </ScrollView>
+                    </pancakeView:PancakeView.BackgroundGradientStops>-->
+                <Label Text="{Binding SaveText}" TextColor="{AppThemeBinding Dark={StaticResource ButtonTextDarkColor},Light={StaticResource ButtonTextLightColor}}" FontSize="15" FontFamily="ThemeFontBold" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
+                <pancakeView:PancakeView.GestureRecognizers>
+                    <TapGestureRecognizer  Command="{Binding BindingContext.OkCommand,Source={x:Reference pancake}}"></TapGestureRecognizer>
+                </pancakeView:PancakeView.GestureRecognizers>
+            </pancakeView:PancakeView>
+        </Grid>
     </pancakeView:PancakeView>
 
 </pages:PopupPage>

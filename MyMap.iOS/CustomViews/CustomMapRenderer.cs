@@ -117,8 +117,8 @@ namespace MyMap.iOS.CustomViews
                 context.TranslateCTM(0, image.Size.Height);
                 context.ScaleCTM(1.0f, -1.0f);
 
-                var rect = new RectangleF(0, 0, (float)image.Size.Width, (float)image.Size.Height);
-
+                var rect = new RectangleF(0, 0, (float)65, (float)image.Size.Height);
+                context.SetAlpha(0.5f);
                 context.ClipToMask(rect, image.CGImage);
                 context.SetFillColor(color.CGColor);
                 context.FillRect(rect);
@@ -136,12 +136,7 @@ namespace MyMap.iOS.CustomViews
 
         //    //if (customView.Name.Equals("Xamarin"))
         //    //{
-        //        customPinView.Frame = new CGRect(0, 0, 200, 84);
-        //        var image = new UIImageView(new CGRect(0, 0, 200, 84));
-        //        image.Image = UIImage.FromFile("xamarin.png");
-        //        customPinView.AddSubview(image);
-        //        customPinView.Center = new CGPoint(0, -(e.View.Frame.Height + 75));
-        //        e.View.AddSubview(customPinView);
+        //    //e.View.Image.
         //    //}
         //}
         //protected override MKAnnotationView GetViewForAnnotation(MKMapView mapView, IMKAnnotation annotation)

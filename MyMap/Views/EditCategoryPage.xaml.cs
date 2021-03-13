@@ -36,7 +36,7 @@ namespace MyMap.Views
                     size = safeInsets.Right;
                 else
                     size = safeInsets.Left;
-                this.SourceItems.Margin = new Thickness(size, 0, size, 71);
+                this.SourceItems.Margin = new Thickness(size, 0, size, 0);
                 //this.MainGrid.Margin = new Thickness(0, safeInsets.Top, 0, 0);
                 this.BottomBar.Margin = new Thickness(0, 0, 0, 21);
             }

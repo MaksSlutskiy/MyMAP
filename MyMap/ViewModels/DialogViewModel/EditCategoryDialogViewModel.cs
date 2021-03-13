@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using MyMap.Helps;
 using MyMap.Interface;
 using MyMap.Model;
 using Prism.Commands;
@@ -79,7 +80,7 @@ namespace MyMap.ViewModels.DialogViewModel
             else
             {
                 _isCreated = true;
-                this.Name = "New Category";
+                this.Name = Translator.TranslatorInstance["EditCategory_New"];
                 this.SelectedColor = Color.FromHex("#000000");
             }
         }

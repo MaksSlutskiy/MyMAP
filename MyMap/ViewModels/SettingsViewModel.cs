@@ -31,11 +31,14 @@ namespace MyMap.ViewModels
            _backCommand ?? (_backCommand = new DelegateCommand(async () =>
            {
                var nav = new NavigationParameters();
-               nav.Add("CheckTheme",true);
+               nav.Add("CheckTheme", true);
                await NavigationService.GoBackAsync(nav);
            }));
         public DelegateCommand AboutAppCommand =>
-            _aboutAppCommand ?? (_aboutAppCommand = new DelegateCommand(() => NavigateAsync("AboutAppPage")));
+            _aboutAppCommand ?? (_aboutAppCommand = new DelegateCommand(() =>
+            {
+                NavigateAsync("AboutAppPage");
+            }));
 
         public DelegateCommand AdvertisingCommand =>
             _advertisingCommand ?? (_advertisingCommand = new DelegateCommand(() => NavigateAsync("AdvertisingPage")));

@@ -81,6 +81,7 @@ namespace MyMap
             containerRegistry.RegisterForNavigation<GroupMapObjectPage, GroupMapObjectViewModel>();
             containerRegistry.RegisterForNavigation<EditCategoryPage, EditCategoryViewModel>();
             containerRegistry.RegisterForNavigation<SettingPage, SettingsViewModel>();
+            containerRegistry.RegisterForNavigation<AboutAppPage, AboutAppViewModel>();
 
             containerRegistry.RegisterForNavigation<EditPinDialogPage, EditPinDialogViewModel>();
             containerRegistry.RegisterForNavigation<ShareMapDialogPage, ShareMapDialogViewModel>();

@@ -3,12 +3,14 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using MyMap.Controls;
 using MyMap.Extensions;
+using MyMap.Helps;
 using MyMap.Interface;
 using MyMap.Model;
 using Prism.Commands;
 using Prism.Events;
 using Prism.Navigation;
 using Prism.Services;
+using Xamarin.Forms;
 
 namespace MyMap.ViewModels
 {
@@ -18,7 +20,7 @@ namespace MyMap.ViewModels
         private ObservableCollection<Category> _sourceItems;
         private DelegateCommand<Category> _itemTappedCommand;
         private DelegateCommand<Category> _removeItemCommand;
-
+        private DelegateCommand _backCommand;
         public ObservableCollection<Category> SourceItems
         {
             get
@@ -31,6 +33,12 @@ namespace MyMap.ViewModels
             }
             set => SetProperty(ref _sourceItems, value);
         }
+        public DelegateCommand BackCommand =>
+        _backCommand ?? (_backCommand = new DelegateCommand(async () =>
+        {
+            SaveChanges();
+            await NavigationService.GoBackAsync(("Categorys", _sourceItems));
+        }));
         public DelegateCommand<Category> ItemTappedCommand =>
            _itemTappedCommand ?? (_itemTappedCommand = new DelegateCommand<Category>((item) =>
            {
@@ -52,8 +60,8 @@ namespace MyMap.ViewModels
                 GetDate();
                 this.ToolbarItems = new ObservableCollection<ViewItem>
             {
-                new ViewItem {Title= "item0", ImageSource="outline_book.png" },
-                new ViewItem {Title= "item1", ImageSource="outline_add.png" },
+                new ViewItem {Title= Translator.TranslatorInstance["Main_Archive"], ImageSource="outline_book.png" },
+                new ViewItem {Title= Translator.TranslatorInstance["Main_Create"], ImageSource="outline_add.png" },
             };
 
             }
@@ -134,8 +142,8 @@ namespace MyMap.ViewModels
             }
             else
             {
-                await PageDialogService.DisplayAlertAsync("Message",
-                       "This category is static", "Ok");
+                await PageDialogService.DisplayAlertAsync(Translator.TranslatorInstance["Categories_Message"],
+                       Translator.TranslatorInstance["Categories_MessageText"], "Ok");
 
             }
         }

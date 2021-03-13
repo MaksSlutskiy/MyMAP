@@ -1,6 +1,7 @@
 ﻿using MyMap.Controls;
 using MyMap.CustomViews;
 using MyMap.Extensions;
+using MyMap.Helps;
 using MyMap.Interface;
 using MyMap.Model;
 using Prism.Commands;
@@ -53,11 +54,10 @@ namespace MyMap.ViewModels
             IsCenterIconVisible = true;
             this.ToolbarItems = new ObservableCollection<ViewItem>
                     {
-                        new ViewItem {Title= "Save", ImageSource="outline_check.png" },
-                        new ViewItem {Title= "Back", ImageSource="outline_clear.png" },
+                        new ViewItem {Title= Translator.TranslatorInstance["Main_Save"], ImageSource="outline_check.png" },
+                        new ViewItem {Title= Translator.TranslatorInstance["Main_Cancel"], ImageSource="outline_clear.png" },
                     };
         }
-
 
         public bool IsCenterIconVisible
         {
@@ -106,18 +106,6 @@ namespace MyMap.ViewModels
                 }
 
             }));
-            Title = "Main Page";
-            this.ToolbarItems = new ObservableCollection<ViewItem>
-            {
-                new ViewItem {Title= "item0", ImageSource="outline_book.png" },
-                new ViewItem {Title= "item0", ImageSource="outline_share.png" },
-                new ViewItem {Title= "item0", ImageSource="outline_add.png" },
-                new ViewItem {Title= "item1", ImageSource="outline_book.png" },
-
-                
-               // new ViewItem {Title=Translator.TranslatorInstance["New_Archive_Templates"], ImageSource="outline_pattern_payment.png" },
-               // new ViewItem {Title=Translator.TranslatorInstance["New_Archive_ChangeColumn"], ImageSource="outline_view_col.png" }
-            };
           
             IsSideBarIconVisible = true;
             dataContainer = new DataContainer();
@@ -181,21 +169,15 @@ namespace MyMap.ViewModels
         public override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedFrom(parameters);
-            //if (parameters.ContainsKey("ActionMap"))
-            //{
-            //    if (parameters["ActionMap"].ToString() == ActionMap.AddPin.ToString())
-            //    {
-
-            //        IsCenterIconVisible = true;
-            //        IsSideBarIconVisible = false;
-            //        this.ToolbarItems = new ObservableCollection<ViewItem>
-            //        {
-            //            new ViewItem {Title= "Save", ImageSource="outline_check.png" },
-            //            new ViewItem {Title= "Back", ImageSource="outline_clear.png" },
-            //        };
-            //    }
-
-            //}
+            this.ToolbarItems = new ObservableCollection<ViewItem>
+            {
+                new ViewItem {Title= Translator.TranslatorInstance["Settings_Title"], ImageSource="outline_settings.png" },
+                new ViewItem {Title= Translator.TranslatorInstance["Main_Share"], ImageSource="outline_share.png" },
+                new ViewItem {Title= Translator.TranslatorInstance["Main_Create"], ImageSource="outline_add.png" },
+                new ViewItem {Title= Translator.TranslatorInstance["Main_Archive"], ImageSource="outline_book.png" }
+               // new ViewItem {Title=Translator.TranslatorInstance["New_Archive_Templates"], ImageSource="outline_pattern_payment.png" },
+               // new ViewItem {Title=Translator.TranslatorInstance["New_Archive_ChangeColumn"], ImageSource="outline_view_col.png" }
+            };
 
             if (parameters.ContainsKey("CheckTheme"))
             {
@@ -212,7 +194,7 @@ namespace MyMap.ViewModels
                 if (mapObjectPin != null)
                 {
                     MapView.Pins.Clear();
-                    //GetDate();
+                    GetDate();
                     var _position = new Position(mapObjectPin.latitude, mapObjectPin.longitude);
                     var _mapSpan = new MapSpan(_position, 0.005, 0.005);
                     MapView.MoveToRegion(_mapSpan);
@@ -233,10 +215,10 @@ namespace MyMap.ViewModels
             IsSideBarIconVisible = true;
             this.ToolbarItems = new ObservableCollection<ViewItem>
             {
-                  new ViewItem {Title= "item0", ImageSource="outline_book.png" },
-                new ViewItem {Title= "item0", ImageSource="outline_share.png" },
-                  new ViewItem {Title= "item0", ImageSource="outline_add.png" },
-                new ViewItem {Title= "item1", ImageSource="outline_book.png" },
+                   new ViewItem {Title= Translator.TranslatorInstance["Settings_Title"], ImageSource="outline_settings.png" },
+                new ViewItem {Title= Translator.TranslatorInstance["Main_Share"], ImageSource="outline_share.png" },
+                new ViewItem {Title= Translator.TranslatorInstance["Main_Create"], ImageSource="outline_add.png" },
+                new ViewItem {Title= Translator.TranslatorInstance["Main_Archive"], ImageSource="outline_book.png" }
                // new ViewItem {Title=Translator.TranslatorInstance["New_Archive_Templates"], ImageSource="outline_pattern_payment.png" },
                // new ViewItem {Title=Translator.TranslatorInstance["New_Archive_ChangeColumn"], ImageSource="outline_view_col.png" }
             };
@@ -247,9 +229,9 @@ namespace MyMap.ViewModels
             //Position = MapView.VisibleRegion.Center
             var _createPin = new MapObjectPin
             {
-                Name = "Xamarin",
+                Name = Translator.TranslatorInstance["Main_NewPin"],
                 Icon = "outline_pinMap.png",
-                Description = "test",
+                Description = "",
                 IsVisible = true,
                 Category = 1,
                 latitude = MapView.VisibleRegion.Center.Latitude,
@@ -263,7 +245,7 @@ namespace MyMap.ViewModels
             {
                 Label = "Xamarin",
                 Icon = "outline_pinMap.png",
-                Description = "test",
+                Description = "",
                 Color = _categorys.Where(x => x.Id == 1).FirstOrDefault().Color,
                 Position = MapView.VisibleRegion.Center
             };
@@ -284,10 +266,10 @@ namespace MyMap.ViewModels
             IsSideBarIconVisible = true;
             this.ToolbarItems = new ObservableCollection<ViewItem>
             {
-                  new ViewItem {Title= "item0", ImageSource="outline_book.png" },
-                new ViewItem {Title= "item0", ImageSource="outline_share.png" },
-                  new ViewItem {Title= "item0", ImageSource="outline_add.png" },
-                new ViewItem {Title= "item1", ImageSource="outline_book.png" },
+                 new ViewItem {Title= Translator.TranslatorInstance["Settings_Title"], ImageSource="outline_settings.png" },
+                new ViewItem {Title= Translator.TranslatorInstance["Main_Share"], ImageSource="outline_share.png" },
+                new ViewItem {Title= Translator.TranslatorInstance["Main_Create"], ImageSource="outline_add.png" },
+                new ViewItem {Title= Translator.TranslatorInstance["Main_Archive"], ImageSource="outline_book.png" }
                // new ViewItem {Title=Translator.TranslatorInstance["New_Archive_Templates"], ImageSource="outline_pattern_payment.png" },
                // new ViewItem {Title=Translator.TranslatorInstance["New_Archive_ChangeColumn"], ImageSource="outline_view_col.png" }
             };
@@ -335,7 +317,7 @@ namespace MyMap.ViewModels
             _categorys = (await categoryService.GetAll()).ToList();
             if (_categorys.Count == 0)
             {
-                Category category = new Category { Name = "Default category", Color = "#000000" };
+                Category category = new Category { Name = Translator.TranslatorInstance["Main_NewCategory"], Color = "#000000" };
                 var cat = await categoryService.Create(category);
                 _categorys.Add(cat);
             }

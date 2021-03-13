@@ -8,6 +8,7 @@ using System.Reflection;
 using MyMap.Controls;
 using MyMap.CustomViews;
 using MyMap.Extensions;
+using MyMap.Helps;
 using MyMap.Interface;
 using MyMap.Model;
 using Prism.Commands;
@@ -86,9 +87,9 @@ namespace MyMap.ViewModels
                 GetDate();
                 this.ToolbarItems = new ObservableCollection<ViewItem>
             {
-                new ViewItem {Title= "item0", ImageSource="outline_map.png" },
-                 new ViewItem {Title= "item0", ImageSource="outline_save.png" },
-                new ViewItem {Title= "item1", ImageSource="outline_list_add.png" },
+                new ViewItem {Title= Translator.TranslatorInstance["Archive_Map"], ImageSource="outline_map.png" },
+                 new ViewItem {Title= Translator.TranslatorInstance["Main_Save"], ImageSource="outline_save.png" },
+                new ViewItem {Title= Translator.TranslatorInstance["Archive_Categories"], ImageSource="outline_list_add.png" },
                // new ViewItem {Title=Translator.TranslatorInstance["New_Archive_Templates"], ImageSource="outline_pattern_payment.png" },
                // new ViewItem {Title=Translator.TranslatorInstance["New_Archive_ChangeColumn"], ImageSource="outline_view_col.png" }
             };
@@ -342,8 +343,8 @@ namespace MyMap.ViewModels
                     }
                 }
             }
-            Xamarin.Forms.DependencyService.Get<IToast>().ShowCustomToast("All changes saved",
-                   Color.FromHex("#FBC02D"), Color.FromHex("#FFFFFF"));
+            Xamarin.Forms.DependencyService.Get<IToast>().ShowCustomToast(Translator.TranslatorInstance["Archive_Message"],
+                   Color.FromHex("#8E97FD"), Color.FromHex("#FFFFFF"));
 
         }
         private async void Remove(MapObjectPin mapObjectPin)

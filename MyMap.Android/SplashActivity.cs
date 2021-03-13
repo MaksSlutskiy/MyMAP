@@ -1,10 +1,11 @@
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
 using AndroidX.AppCompat.App;
 
 namespace MyMap.Droid
 {
-    [Activity(Theme = "@style/MainTheme.Splash",
+    [Activity(Theme = "@style/MainTheme.Splash", 
               MainLauncher = true,
               NoHistory = true)]
     public class SplashActivity : AppCompatActivity

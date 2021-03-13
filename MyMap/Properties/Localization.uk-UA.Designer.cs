@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MyMap.Properties {
+namespace MyMap.Views.DialogViews {
     using System;
     using System.Reflection;
     
@@ -30,7 +30,7 @@ namespace MyMap.Properties {
         internal static System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.Equals(null, resourceMan)) {
-                    System.Resources.ResourceManager temp = new System.Resources.ResourceManager("MyMap.Properties.Localization.uk-UA", typeof(Localization_uk_UA).Assembly);
+                    System.Resources.ResourceManager temp = new System.Resources.ResourceManager("MyMap.Views.DialogViews.Localization.uk-UA", typeof(Localization_uk_UA).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -47,9 +47,27 @@ namespace MyMap.Properties {
             }
         }
         
-        internal static string Test {
+        internal static string Settings_AboutApp {
             get {
-                return ResourceManager.GetString("Test", resourceCulture);
+                return ResourceManager.GetString("Settings_AboutApp", resourceCulture);
+            }
+        }
+        
+        internal static string Settings_ChangeLanguage {
+            get {
+                return ResourceManager.GetString("Settings_ChangeLanguage", resourceCulture);
+            }
+        }
+        
+        internal static string Settings_ChangeTheme {
+            get {
+                return ResourceManager.GetString("Settings_ChangeTheme", resourceCulture);
+            }
+        }
+        
+        internal static string Settings_Title {
+            get {
+                return ResourceManager.GetString("Settings_Title", resourceCulture);
             }
         }
     }

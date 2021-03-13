@@ -5,6 +5,7 @@
              xmlns:customviews="clr-namespace:MyMap.CustomViews"
               xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              NavigationPage.HasNavigationBar="false"
+              xmlns:translate="clr-namespace:MyMap.Helps;assembly=MyMap"
               xmlns:b="http://prismlibrary.com"
               xmlns:converters="clr-namespace:MyMap.ConvertData"
               xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -34,7 +35,7 @@
                     <OnPlatform x:TypeArguments="CornerRadius" iOS="30" Android="40"/>
                 </pancakeView:PancakeView.CornerRadius>
             </pancakeView:PancakeView>
-            <Label Text="Archive Pins" FontSize="Title" TextColor="{StaticResource TextDarkColor}" Grid.Row="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"></Label>
+            <Label Text="{translate:Translate Archive_Title}" FontSize="Title" TextColor="{StaticResource TextDarkColor}" Grid.Row="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"></Label>
             <ListView x:Name="SourceItems" Grid.Row="1"  ItemsSource="{Binding SourceItems}" 
                     SelectionMode="None" SeparatorVisibility="None" BackgroundColor="Transparent"
                           IsGroupingEnabled="true"  CachingStrategy="RecycleElement" VerticalScrollBarVisibility="Never">

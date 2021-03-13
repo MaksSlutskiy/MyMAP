@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using MyMap.Extensions;
+using MyMap.Helps;
 using MyMap.Interface;
 using MyMap.Model;
 using Prism.Commands;
@@ -39,6 +40,7 @@ namespace MyMap.ViewModels.DialogViewModel
             GetDate();
         }
         private DelegateCommand _okCommand;
+        private DelegateCommand _closeCommand = null;
         private DelegateCommand _editCommand;
         private DelegateCommand<Category> _selectedCategoryCommand;
         public ObservableCollection<Category> SourceItemsCategory
@@ -53,6 +55,11 @@ namespace MyMap.ViewModels.DialogViewModel
             }
             set => SetProperty(ref _sourceItemsCategory, value);
         }
+        public DelegateCommand CloseCommand =>
+          _closeCommand ?? (_closeCommand = new DelegateCommand(() =>
+          {
+              NavigationService.GoBackAsync();
+          }));
         public DelegateCommand OkCommand =>
             _okCommand ?? (_okCommand = new DelegateCommand(async () =>
             {
@@ -67,13 +74,13 @@ namespace MyMap.ViewModels.DialogViewModel
            {
                if (IsEdit)
                {
-                   SaveText = "Back";
+                   SaveText = Translator.TranslatorInstance["Main_Cancel"];
                    IsEdit = false;
                    TintColor = Color.LightGray;
                }
                else
                {
-                   SaveText = "Save";
+                   SaveText = Translator.TranslatorInstance["Main_Save"];
                    IsEdit = true;
                    TintColor = Color.Black;
                }
@@ -165,13 +172,13 @@ namespace MyMap.ViewModels.DialogViewModel
             }
             if (parameters.ContainsKey("New"))
             {
-                SaveText = "Save";
+                SaveText = Translator.TranslatorInstance["Main_Save"];
                 TintColor = Color.Black;
                 IsEdit = true;
             }
             else
             {
-                SaveText = "Back";
+                SaveText = Translator.TranslatorInstance["Main_Cancel"];
                 TintColor = Color.LightGray;
                 IsEdit = false;
             }

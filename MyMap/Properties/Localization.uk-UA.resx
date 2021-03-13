@@ -13,8 +13,151 @@
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
     
-    <data name="Test" xml:space="preserve">
-    <value>Укр</value>
+    <data name="Settings_AboutApp" xml:space="preserve">
+    <value>Про додаток</value>
+    <comment></comment>
+  </data>
+     <data name="Settings_ChangeLanguage" xml:space="preserve">
+    <value>Змінити мову</value>
+    <comment></comment>
+  </data>
+     <data name="Settings_ChangeTheme" xml:space="preserve">
+    <value>Змінити тему</value>
+    <comment></comment>
+  </data>
+     <data name="Settings_Title" xml:space="preserve">
+    <value>Налаштування</value>
+    <comment></comment>
+  </data>
+    <data name="SelectLanguage_Title" xml:space="preserve">
+    <value>Оберіть мову</value>
+    <comment></comment>
+  </data>
+    <data name="Main_Save" xml:space="preserve">
+    <value>Зберегти</value>
+    <comment></comment>
+  </data>
+     <data name="Main_Cancel" xml:space="preserve">
+    <value>Відміна</value>
+    <comment></comment>
+  </data>
+     <data name="Main_Share" xml:space="preserve">
+    <value>Поділитися</value>
+    <comment></comment>
+  </data>
+     <data name="Main_Create" xml:space="preserve">
+    <value>Створити</value>
+    <comment></comment>
+  </data>
+      <data name="Main_Archive" xml:space="preserve">
+    <value>Архів</value>
+    <comment></comment>
+  </data>
+     <data name="Share_Title" xml:space="preserve">
+    <value>Поділитися мапою</value>
+    <comment></comment>
+  </data>
+     <data name="Share_Name" xml:space="preserve">
+    <value>Назва</value>
+    <comment></comment>
+  </data>
+    <data name="Archive_Title" xml:space="preserve">
+    <value>Архів міток</value>
+    <comment></comment>
+  </data>
+    <data name="Archive_Map" xml:space="preserve">
+    <value>Мапа</value>
+    <comment></comment>
+  </data>
+     <data name="Archive_Categories" xml:space="preserve">
+    <value>Категорії</value>
+    <comment></comment>
+  </data>
+     <data name="Loading_Title" xml:space="preserve">
+    <value>Завантаження</value>
+    <comment></comment>
+  </data>
+     <data name="EditPin_Title" xml:space="preserve">
+    <value>Редагувати</value>
+    <comment></comment>
+  </data>
+    <data name="EditPin_Category" xml:space="preserve">
+    <value>Категорія</value>
+    <comment></comment>
+  </data>
+     <data name="EditPin_Description" xml:space="preserve">
+    <value>Опис</value>
+    <comment></comment>
+  </data>
+    <data name="EditCategory_New" xml:space="preserve">
+    <value>Нова категорія</value>
+    <comment></comment>
+  </data>
+     <data name="EditCategory_Edit" xml:space="preserve">
+    <value>Редагувати</value>
+    <comment></comment>
+  </data>
+     <data name="Main_NewPin" xml:space="preserve">
+    <value>Нова мітка</value>
+    <comment></comment>
+  </data>
+    <data name="Main_NewCategory" xml:space="preserve">
+    <value>Без категорії</value>
+    <comment></comment>
+  </data>
+    <data name="EditPin_DescriptionText" xml:space="preserve">
+    <value>Опис про мітку</value>
+    <comment></comment>
+  </data>
+     <data name="EditPin_Address" xml:space="preserve">
+    <value>Адреса</value>
+    <comment></comment>
+  </data>
+    <data name="Archive_Message" xml:space="preserve">
+    <value>Всі зміни збереженіd</value>
+    <comment></comment>
+  </data>
+     <data name="Categories_Message" xml:space="preserve">
+    <value>Повідомлення</value>
+    <comment></comment>
+  </data>
+      <data name="Categories_MessageText" xml:space="preserve">
+    <value>Ця категорія статична</value>
+    <comment></comment>
+  </data>
+   <data name="Categories_Version" xml:space="preserve">
+    <value>Версія</value>
+    <comment></comment>
+  </data>
+   <data name="Categories_Developer" xml:space="preserve">
+    <value>Developer</value>
+    <comment></comment>
+  </data>
+   <data name="Categories_Name" xml:space="preserve">
+    <value>Ім'я: Слуцький Максим</value>
+    <comment></comment>
+  </data>
+  <data name="Categories_Description" xml:space="preserve">
+    <value>Опис</value>
+    <comment></comment>
+  </data>
+   <data name="Categories_Country" xml:space="preserve">
+    <value>Країна: Україна</value>
+    <comment></comment>
+  </data>
+  <data name="Categories_Text" xml:space="preserve">
+    <value>MyMap - це додаток для нотаток на карті.
+
+Основні можливості:
+
+ Швидка і зручна установка міток;
+
+ Пошук і редагування міток в архіві і на карті;
+
+ Створення, редагування та кастомизация категорій;
+
+ Розподіл міток на свої категорії;
+</value>
     <comment></comment>
   </data>
 </root>

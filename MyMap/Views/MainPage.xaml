@@ -20,7 +20,7 @@
                                                        VerticalOptions="CenterAndExpand"/>
              </pancakeView:PancakeView>-->
             <!--<Image Source="{Binding ImageSource}" WidthRequest="500" HeightRequest="500" Grid.Row="0" VerticalOptions="CenterAndExpand"></Image>-->
-            <customviews:ExtendedImage HorizontalOptions="CenterAndExpand" TranslationY="{Binding AnchorY}" IsVisible="{Binding IsCenterIconVisible}" Source="outline_pin.png" HeightRequest="60"   Grid.Row="0" WidthRequest="60"/>
+            <customviews:ExtendedImage HorizontalOptions="CenterAndExpand" TranslationY="{Binding AnchorY}" IsVisible="{Binding IsCenterIconVisible}" TintColor="{AppThemeBinding Dark={StaticResource Button},Light={StaticResource Black}}"  Source="outline_pin.png" HeightRequest="60"   Grid.Row="0" WidthRequest="60"/>
             <controls:BottomToolBarView  x:Name="BottomBar"
              ItemsSource="{Binding ToolbarItems}"
                                  ItemSelected="{Binding ItemSelectionChangedCommand}"

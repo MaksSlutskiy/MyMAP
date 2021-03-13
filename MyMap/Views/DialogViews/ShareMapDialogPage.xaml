@@ -4,6 +4,7 @@
                    xmlns:b="http://prismlibrary.com"
                     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              mc:Ignorable="d"
+                   xmlns:translate="clr-namespace:MyMap.Helps;assembly=MyMap"
                    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
              ios:Page.UseSafeArea="true"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -52,11 +53,11 @@
                         <OnPlatform x:TypeArguments="CornerRadius" iOS="30" Android="40"/>
                     </pancakeView:PancakeView.CornerRadius>
                 </pancakeView:PancakeView>
-                <Label Text="Share Map" FontSize="Title" TextColor="{StaticResource TextDarkColor}" Grid.Row="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"></Label>
+                <Label Text="{translate:Translate Main_Share}" FontSize="Title" TextColor="{StaticResource TextDarkColor}" Grid.Row="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"></Label>
 
                 <Image Grid.Row="1"    Source="{Binding ImageSource}"></Image>
                 <StackLayout  Grid.Row="2">
-                    <Label  Text="Name" FontSize="15" Margin="0,15,0,0"  FontFamily="ThemeFontBold" TextColor="{AppThemeBinding Dark={StaticResource TextDarkColor},Light={StaticResource Button}}"/>
+                    <Label  Text="{translate:Translate Share_Name}" FontSize="15" Margin="0,15,0,0"  FontFamily="ThemeFontBold" TextColor="{AppThemeBinding Dark={StaticResource TextDarkColor},Light={StaticResource Button}}"/>
                     <Entry    HorizontalOptions="FillAndExpand" Placeholder="Screen from MyMap" Text="{Binding Name,Mode=OneWayToSource}" >
                         <Entry.Behaviors>
                             <behaviors:EntryLengthValidatorBehavior MaxLength="40" />
@@ -67,7 +68,7 @@
             </Grid>
             <pancakeView:PancakeView Grid.Row="1" HorizontalOptions="FillAndExpand"  x:Name="pancake" HeightRequest="50" BackgroundColor="{StaticResource Button}">
               
-                <Label Text="Share" TextColor="{AppThemeBinding Dark={StaticResource ButtonTextDarkColor},Light={StaticResource ButtonTextLightColor}}" FontSize="15" FontFamily="ThemeFontBold" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
+                <Label Text="{translate:Translate Main_Share}" TextColor="{AppThemeBinding Dark={StaticResource ButtonTextDarkColor},Light={StaticResource ButtonTextLightColor}}" FontSize="15" FontFamily="ThemeFontBold" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
                 <pancakeView:PancakeView.GestureRecognizers>
                     <TapGestureRecognizer  Command="{Binding BindingContext.BtnShareClick,Source={x:Reference pancake}}"></TapGestureRecognizer>
                 </pancakeView:PancakeView.GestureRecognizers>

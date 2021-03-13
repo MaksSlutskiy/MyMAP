@@ -13,8 +13,151 @@
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
     
-    <data name="Test" xml:space="preserve">
-    <value>Test</value>
+    <data name="Settings_AboutApp" xml:space="preserve">
+    <value>About application</value>
+    <comment></comment>
+  </data>
+     <data name="Settings_ChangeLanguage" xml:space="preserve">
+    <value>Change language</value>
+    <comment></comment>
+  </data>
+     <data name="Settings_ChangeTheme" xml:space="preserve">
+    <value>Change theme</value>
+    <comment></comment>
+  </data>
+     <data name="Settings_Title" xml:space="preserve">
+    <value>Settings</value>
+    <comment></comment>
+  </data>
+     <data name="SelectLanguage_Title" xml:space="preserve">
+    <value>Select language</value>
+    <comment></comment>
+  </data>
+    <data name="Main_Save" xml:space="preserve">
+    <value>Save</value>
+    <comment></comment>
+  </data>
+    <data name="Main_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+    <comment></comment>
+  </data>
+     <data name="Main_Share" xml:space="preserve">
+    <value>Share</value>
+    <comment></comment>
+  </data>
+     <data name="Main_Create" xml:space="preserve">
+    <value>Create</value>
+    <comment></comment>
+  </data>
+     <data name="Main_Archive" xml:space="preserve">
+    <value>Archive</value>
+    <comment></comment>
+  </data>
+    <data name="Share_Title" xml:space="preserve">
+    <value>Share Map</value>
+    <comment></comment>
+  </data>
+     <data name="Share_Name" xml:space="preserve">
+    <value>Name</value>
+    <comment></comment>
+  </data>
+     <data name="Archive_Title" xml:space="preserve">
+    <value>Archive Pins</value>
+    <comment></comment>
+  </data>
+    <data name="Archive_Map" xml:space="preserve">
+    <value>Map</value>
+    <comment></comment>
+  </data>
+     <data name="Archive_Categories" xml:space="preserve">
+    <value>Categories</value>
+    <comment></comment>
+  </data>
+     <data name="Loading_Title" xml:space="preserve">
+    <value>Loading</value>
+    <comment></comment>
+  </data>
+     <data name="EditPin_Title" xml:space="preserve">
+    <value>Edit</value>
+    <comment></comment>
+  </data>
+    <data name="EditPin_Category" xml:space="preserve">
+    <value>Category</value>
+    <comment></comment>
+  </data>
+     <data name="EditPin_Description" xml:space="preserve">
+    <value>Description</value>
+    <comment></comment>
+  </data>
+     <data name="EditCategory_New" xml:space="preserve">
+    <value>New Category</value>
+    <comment></comment>
+  </data>
+     <data name="EditCategory_Edit" xml:space="preserve">
+    <value>Edit</value>
+    <comment></comment>
+  </data>
+     <data name="Main_NewPin" xml:space="preserve">
+    <value>New Pin</value>
+    <comment></comment>
+  </data>
+     <data name="Main_NewCategory" xml:space="preserve">
+    <value>No category</value>
+    <comment></comment>
+  </data>
+    <data name="EditPin_DescriptionText" xml:space="preserve">
+    <value>Description about pin</value>
+    <comment></comment>
+  </data>
+     <data name="EditPin_Addresss" xml:space="preserve">
+    <value>Address</value>
+    <comment></comment>
+  </data>
+    <data name="Archive_Message" xml:space="preserve">
+    <value>All changes saved</value>
+    <comment></comment>
+  </data>
+    <data name="Categories_Message" xml:space="preserve">
+    <value>Message</value>
+    <comment></comment>
+  </data>
+     <data name="Categories_MessageText" xml:space="preserve">
+    <value>This category is static</value>
+    <comment></comment>
+  </data>
+  <data name="Categories_Version" xml:space="preserve">
+    <value>Version</value>
+    <comment></comment>
+  </data>
+  <data name="Categories_Developer" xml:space="preserve">
+    <value>Developer</value>
+    <comment></comment>
+  </data>
+   <data name="Categories_Name" xml:space="preserve">
+    <value>Name: Slutskiy Maksim</value>
+    <comment></comment>
+  </data>
+  <data name="Categories_Description" xml:space="preserve">
+    <value>Description</value>
+    <comment></comment>
+  </data>
+  <data name="Categories_Country" xml:space="preserve">
+    <value>Country: Urkaine</value>
+    <comment></comment>
+  </data>
+  <data name="Categories_Text" xml:space="preserve">
+    <value>MyMap is a map note taking app.
+
+Key features:
+
+ Fast and convenient labeling;
+
+ Search and editing of tags in the archive and on the map;
+
+ Creation, editing and customization of categories;
+
+ Distribution of tags into their categories;
+</value>
     <comment></comment>
   </data>
 </root>

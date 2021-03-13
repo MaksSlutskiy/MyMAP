@@ -47,9 +47,207 @@ namespace MyMap.Properties {
             }
         }
         
-        internal static string Test {
+        internal static string Settings_AboutApp {
             get {
-                return ResourceManager.GetString("Test", resourceCulture);
+                return ResourceManager.GetString("Settings_AboutApp", resourceCulture);
+            }
+        }
+        
+        internal static string Settings_ChangeLanguage {
+            get {
+                return ResourceManager.GetString("Settings_ChangeLanguage", resourceCulture);
+            }
+        }
+        
+        internal static string Settings_ChangeTheme {
+            get {
+                return ResourceManager.GetString("Settings_ChangeTheme", resourceCulture);
+            }
+        }
+        
+        internal static string Settings_Title {
+            get {
+                return ResourceManager.GetString("Settings_Title", resourceCulture);
+            }
+        }
+        
+        internal static string SelectLanguage_Title {
+            get {
+                return ResourceManager.GetString("SelectLanguage_Title", resourceCulture);
+            }
+        }
+        
+        internal static string Main_Save {
+            get {
+                return ResourceManager.GetString("Main_Save", resourceCulture);
+            }
+        }
+        
+        internal static string Main_Cancel {
+            get {
+                return ResourceManager.GetString("Main_Cancel", resourceCulture);
+            }
+        }
+        
+        internal static string Main_Share {
+            get {
+                return ResourceManager.GetString("Main_Share", resourceCulture);
+            }
+        }
+        
+        internal static string Main_Create {
+            get {
+                return ResourceManager.GetString("Main_Create", resourceCulture);
+            }
+        }
+        
+        internal static string Main_Archive {
+            get {
+                return ResourceManager.GetString("Main_Archive", resourceCulture);
+            }
+        }
+        
+        internal static string Share_Title {
+            get {
+                return ResourceManager.GetString("Share_Title", resourceCulture);
+            }
+        }
+        
+        internal static string Share_Name {
+            get {
+                return ResourceManager.GetString("Share_Name", resourceCulture);
+            }
+        }
+        
+        internal static string Archive_Title {
+            get {
+                return ResourceManager.GetString("Archive_Title", resourceCulture);
+            }
+        }
+        
+        internal static string Archive_Map {
+            get {
+                return ResourceManager.GetString("Archive_Map", resourceCulture);
+            }
+        }
+        
+        internal static string Archive_Categories {
+            get {
+                return ResourceManager.GetString("Archive_Categories", resourceCulture);
+            }
+        }
+        
+        internal static string Loading_Title {
+            get {
+                return ResourceManager.GetString("Loading_Title", resourceCulture);
+            }
+        }
+        
+        internal static string EditPin_Title {
+            get {
+                return ResourceManager.GetString("EditPin_Title", resourceCulture);
+            }
+        }
+        
+        internal static string EditPin_Category {
+            get {
+                return ResourceManager.GetString("EditPin_Category", resourceCulture);
+            }
+        }
+        
+        internal static string EditPin_Description {
+            get {
+                return ResourceManager.GetString("EditPin_Description", resourceCulture);
+            }
+        }
+        
+        internal static string EditCategory_New {
+            get {
+                return ResourceManager.GetString("EditCategory_New", resourceCulture);
+            }
+        }
+        
+        internal static string EditCategory_Edit {
+            get {
+                return ResourceManager.GetString("EditCategory_Edit", resourceCulture);
+            }
+        }
+        
+        internal static string Main_NewPin {
+            get {
+                return ResourceManager.GetString("Main_NewPin", resourceCulture);
+            }
+        }
+        
+        internal static string Main_NewCategory {
+            get {
+                return ResourceManager.GetString("Main_NewCategory", resourceCulture);
+            }
+        }
+        
+        internal static string EditPin_DescriptionText {
+            get {
+                return ResourceManager.GetString("EditPin_DescriptionText", resourceCulture);
+            }
+        }
+        
+        internal static string EditPin_Addresss {
+            get {
+                return ResourceManager.GetString("EditPin_Addresss", resourceCulture);
+            }
+        }
+        
+        internal static string Archive_Message {
+            get {
+                return ResourceManager.GetString("Archive_Message", resourceCulture);
+            }
+        }
+        
+        internal static string Categories_Message {
+            get {
+                return ResourceManager.GetString("Categories_Message", resourceCulture);
+            }
+        }
+        
+        internal static string Categories_MessageText {
+            get {
+                return ResourceManager.GetString("Categories_MessageText", resourceCulture);
+            }
+        }
+        
+        internal static string Categories_Version {
+            get {
+                return ResourceManager.GetString("Categories_Version", resourceCulture);
+            }
+        }
+        
+        internal static string Categories_Developer {
+            get {
+                return ResourceManager.GetString("Categories_Developer", resourceCulture);
+            }
+        }
+        
+        internal static string Categories_Name {
+            get {
+                return ResourceManager.GetString("Categories_Name", resourceCulture);
+            }
+        }
+        
+        internal static string Categories_Description {
+            get {
+                return ResourceManager.GetString("Categories_Description", resourceCulture);
+            }
+        }
+        
+        internal static string Categories_Country {
+            get {
+                return ResourceManager.GetString("Categories_Country", resourceCulture);
+            }
+        }
+        
+        internal static string Categories_Text {
+            get {
+                return ResourceManager.GetString("Categories_Text", resourceCulture);
             }
         }
     }

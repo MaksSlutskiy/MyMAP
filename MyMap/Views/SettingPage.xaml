@@ -37,7 +37,7 @@
                     <OnPlatform x:TypeArguments="CornerRadius" iOS="30" Android="40"/>
                 </pancakeView:PancakeView.CornerRadius>
             </pancakeView:PancakeView>
-            <Label Text="Settings" FontSize="Title" TextColor="{StaticResource TextDarkColor}" Grid.Row="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"></Label>
+            <Label Text="{translate:Translate Settings_Title}" FontSize="Title" TextColor="{StaticResource TextDarkColor}" Grid.Row="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"></Label>
             <!--<contentview:StateNetworkView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Grid.Row="0"/>-->
             <StackLayout Orientation="Vertical" Grid.Row="1">
                 <!--<Label Text="General settings" TextColor="{AppThemeBinding Dark={StaticResource TextDarkColor},Light={StaticResource TextLightColor}}" Padding="20,0,10,15" />-->
@@ -47,21 +47,21 @@
                             <TapGestureRecognizer Command="{Binding AboutAppCommand}" NumberOfTapsRequired="1"/>
                         </StackLayout.GestureRecognizers>
                         <customviews:ExtendedImage Source="outline_version.png" Style="{x:StaticResource ImageSetting}"/>
-                        <Label Text="{translate:Translate Test}" Style="{x:StaticResource LabelTitle}"/>
+                        <Label Text="{translate:Translate Settings_AboutApp}" Style="{x:StaticResource LabelTitle}"/>
                     </StackLayout>
                     <StackLayout Orientation="Horizontal" Padding="10" BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundListItemColor},Light={StaticResource BackgroundListColor}}">
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding LanguageChangecommand}" NumberOfTapsRequired="1"/>
                         </StackLayout.GestureRecognizers>
                         <customviews:ExtendedImage Source="outline_language.png" Style="{x:StaticResource ImageSetting}"/>
-                        <Label Text="Change language" Style="{x:StaticResource LabelTitle}"/>
+                        <Label Text="{translate:Translate Settings_ChangeLanguage}" Style="{x:StaticResource LabelTitle}"/>
                     </StackLayout>
                     <StackLayout Orientation="Horizontal"  Padding="10" BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundListItemColor},Light={StaticResource BackgroundListColor}}">
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding ThemeChangecommand}" NumberOfTapsRequired="1"/>
                         </StackLayout.GestureRecognizers>
                         <customviews:ExtendedImage Source="outline_theme.png" Style="{x:StaticResource ImageSetting}"/>
-                        <Label Text="Change theme" Style="{x:StaticResource LabelTitle}"/>
+                        <Label Text="{translate:Translate Settings_ChangeTheme}" Style="{x:StaticResource LabelTitle}"/>
                     </StackLayout>
                 </StackLayout>
             </StackLayout>
